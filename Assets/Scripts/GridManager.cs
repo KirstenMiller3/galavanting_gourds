@@ -8,10 +8,10 @@ public partial class GridManager : MonoBehaviour
     public struct GridSquareData
     {
         public Transform Transform;
-        public Vector3 Position;
         public GridType GridType;
         public bool IsButton => !string.IsNullOrEmpty(ButtonId);
         public string ButtonId;
+        public Vector3 Position => Transform.position + (Vector3.up * 0.5f);
     }
 
     [SerializeField] private GridSquare[] _points;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.UI.Image;
 
 public interface IOogrootState
 {
@@ -19,7 +20,7 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
 {
     private const int MaxOogroots = 10;
 
-    public List<Oogroot> oogroots;
+    public List<GameObject> oogroots;
     public enum OogrootState
     {
         Idle, Ready, Walking, Planting, Dying
@@ -42,6 +43,8 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
     {
         base.Awake();
         _states.Add(OogrootState.Idle, new IdleState());
+        _states.Add(OogrootState.Ready, new ReadyState());
+
     }
 
     private void Start() { 
@@ -51,13 +54,14 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
             float zOffset = Random.Range(-0.4f, .4f);
             var x = GridManager.GridOrigin.Position.x + xOffset;
             var z = GridManager.GridOrigin.Position.z + zOffset;
-            var position = new Vector3(x, GridManager.GridOrigin.Position.y, z);
+            var position = new Vector3(x, GridManager.GridOrigin.Position.y, z) ;
 
-            GameObject.Instantiate(Resources.Load("oogroot"), position, Quaternion.identity);
+            var o = GameObject.Instantiate(Resources.Load("Oogroot"), position, Quaternion.identity) as GameObject;
 
-            var o = new Oogroot();
-            o.WorldPos = position;
-
+            if(o == null)
+            {
+                Debug.Log("o returned null");
+            }
             oogroots.Add(o);
         }
         SetState(OogrootState.Idle);
@@ -117,26 +121,33 @@ public class ReadyState : IOogrootState
 {
     public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Ready;
 
-   
+    private List<Vector3> StartPos = new List<Vector3>();
     public void OnEnter()
     {
-        var origin = GameController.Instance.gridManager.GridOrigin.Position;
-
-        foreach(var o in OogrootController.Instance.oogroots)
+        foreach (var oogroot in OogrootController.Instance.oogroots)
         {
-            var dest = origin - o.transform.position;
-            dest = Vector3.Scale(dest, new Vector3(.8f, 1, .8f));
-            o.transform.position = Vector3.Lerp(o.transform.position, origin, Time.deltaTime * 2);
+            StartPos.Add(oogroot.transform.position);
         }
-       
     }
 
     public void OnExit()
     {
+        //OogrootController.Instance.oogroots[i].GetComponent<OogrootAnimator>().StartJump();
     }
 
     public void OnUpdate()
     {
-      
+        var origin = GameController.Instance.gridManager.GridOrigin.Position;
+
+        for (int i = 0; i < StartPos.Count; i++) 
+        {
+            var dest = ((StartPos[i] - origin) / 2f ) + Vector3.up;
+            Debug.Log($"dest {dest}");
+            Debug.Log($"pos {OogrootController.Instance.oogroots[i].transform.position}");
+            OogrootController.Instance.oogroots[i].transform.position = Vector3.Lerp(OogrootController.Instance.oogroots[i].transform.position, dest, Time.deltaTime * 2f);
+            
+
+
+        }
     }
 }
