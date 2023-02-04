@@ -62,7 +62,7 @@ public class RootController : MonoBehaviour
     private void Move(Vector2Int movement)
     {
         ScreenShake.Instance.Shake(0.1f, 0.02f);
-        bool canMove = _gridManager.Move(movement, true, out bool isHazard, out bool isButton);
+        bool canMove = _gridManager.Move(movement, out bool isHazard, out string buttonId);
         if (canMove)
         {
             Vector3 newPos = _gridManager.GetPosition();
@@ -75,6 +75,11 @@ public class RootController : MonoBehaviour
             ScreenShake.Instance.Shake(0.2f, 0.4f);
             _hitFx.Play();
             GameController.Instance.SetState(GameController.GameState.Hazard);
+        }
+
+        if (!string.IsNullOrEmpty(buttonId))
+        {
+            ButtonManager.Instance.ActivateButton(buttonId);
         }
     }
 
@@ -100,6 +105,8 @@ public class RootController : MonoBehaviour
         ScreenShake.Instance.Shake(0.1f, 0.01f);
 
         GameObject partToUndo = _body.Peek().body;
+
+
         Destroy(partToUndo);
         Destroy(_body.Peek().root);
 
