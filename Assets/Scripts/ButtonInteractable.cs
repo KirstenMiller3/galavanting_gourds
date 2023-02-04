@@ -11,7 +11,7 @@ public class ButtonInteractable : MonoBehaviour
 
     public string Id => _id;
 
-    private void Awake()
+    private void Start()
     {
         Vector2Int pos = new Vector2Int((int)_gridSquare.transform.position.x, (int)_gridSquare.transform.position.z);
         GameController.Instance.gridManager.SetOccupied(pos, true);

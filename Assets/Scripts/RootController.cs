@@ -61,7 +61,7 @@ public class RootController : MonoBehaviour
 
     private void Move(Vector2Int movement)
     {
-        ScreenShake.Instance.Shake(0.1f, 0.02f);
+        Invoke("ShakeOnDelay_Move", 0.7f);
         bool canMove = _gridManager.Move(movement, out GridType gridType, out string buttonId);
         if (canMove)
         {
@@ -72,8 +72,7 @@ public class RootController : MonoBehaviour
         }
 
         if(gridType == GridType.Hazard) {
-            ScreenShake.Instance.Shake(0.2f, 0.4f);
-            _hitFx.Play();
+            Invoke("ShakeOnDelay_Hazzard", 0.7f);
             GameController.Instance.SetState(GameController.GameState.Hazard);
         }
         else if(gridType == GridType.End)
@@ -85,6 +84,17 @@ public class RootController : MonoBehaviour
         {
             ButtonManager.Instance.ActivateButton(buttonId);
         }
+    }
+
+    private void ShakeOnDelay_Move()
+    {
+        ScreenShake.Instance.Shake(0.1f, 0.02f);
+    }
+
+    private void ShakeOnDelay_Hazzard()
+    {
+        ScreenShake.Instance.Shake(0.2f, 0.4f);
+        _hitFx.Play();
     }
 
     private void SpawnBodySection(Vector2Int movement, Vector3 newPos)
