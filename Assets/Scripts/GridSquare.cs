@@ -3,7 +3,6 @@
 public enum GridType
 {
     None,
-    Occupied,
     Gap,
     Button,
     Hazard,
@@ -13,6 +12,7 @@ public enum GridType
 public class GridSquare : MonoBehaviour
 {
     public GridType GridType;
+    public bool IsOccupied;
 
 
     public string ButtonId;

@@ -9,6 +9,7 @@ public partial class GridManager : MonoBehaviour
     {
         public Transform Transform;
         public GridType GridType;
+        public bool IsOccupied;
         public bool IsButton => !string.IsNullOrEmpty(ButtonId);
         public string ButtonId;
         public Vector3 Position => Transform.position + (Vector3.up * 0.5f);
@@ -29,12 +30,12 @@ public partial class GridManager : MonoBehaviour
             int row = (int)(i / _rowSize);
             int col = (int)(i % _rowSize);
             _grid[row, col].Transform = _points[i].transform;
-            //_grid[row, col].IsOccupied = _points[i].IsHazard;
             _grid[row, col].GridType = _points[i].GridType;
+            _grid[row, col].IsOccupied = _points[i].IsOccupied;
             _grid[row, col].ButtonId = _points[i].ButtonId;
         }
 
-        _grid[0, 0].GridType = GridType.Occupied;
+        _grid[0, 0].IsOccupied = true;
     }
 
     public bool Move(Vector2Int movement, out bool isHazard, out string buttonId)
@@ -61,7 +62,7 @@ public partial class GridManager : MonoBehaviour
             isHazard = _grid[desiredPos2.x, desiredPos2.y].GridType == GridType.Hazard;
             buttonId = _grid[desiredPos2.x, desiredPos2.y].ButtonId;
 
-            if (_grid[desiredPos2.x, desiredPos2.y].GridType == GridType.Occupied || _grid[desiredPos2.x, desiredPos2.y].GridType == GridType.Gap)
+            if (_grid[desiredPos2.x, desiredPos2.y].IsOccupied || _grid[desiredPos2.x, desiredPos2.y].GridType == GridType.Gap)
             {
                 return false;
             }
@@ -69,26 +70,26 @@ public partial class GridManager : MonoBehaviour
 
             _gridPos = desiredPos2;
             Debug.Log(_gridPos);
-            _grid[_gridPos.x, _gridPos.y].GridType = GridType.Occupied;
+            _grid[_gridPos.x, _gridPos.y].IsOccupied = true;
             return true;
         }
 
         buttonId = _grid[desiredPos.x, desiredPos.y].ButtonId;
 
-        if (_grid[desiredPos.x, desiredPos.y].GridType == GridType.Occupied)
+        if (_grid[desiredPos.x, desiredPos.y].IsOccupied)
         {
             return false;
         }
 
         _gridPos = desiredPos;
         Debug.Log(_gridPos);
-        _grid[_gridPos.x, _gridPos.y].GridType = GridType.Occupied;
+        _grid[_gridPos.x, _gridPos.y].IsOccupied = true;
         return true;
     }
 
     public void UndoMove(Vector2Int movement)
     {
-        _grid[_gridPos.x, _gridPos.y].GridType = GridType.None;
+        _grid[_gridPos.x, _gridPos.y].IsOccupied = false;
 
 
         if (_grid[_gridPos.x, _gridPos.y].IsButton)

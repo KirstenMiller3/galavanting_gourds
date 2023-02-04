@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OogrootAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+
+    private Vector3 _baseScale;
+    private float yPos;
+    private float rotSpeed = 1f;
+
+    private void Start()
+    {
+        _baseScale = transform.localScale;
+    }
 
 
     [ContextMenu("StartJump")]
