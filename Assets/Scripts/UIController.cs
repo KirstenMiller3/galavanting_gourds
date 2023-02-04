@@ -8,10 +8,12 @@ public class UIController : Singleton<UIController>
 {
     [SerializeField] private GameObject _hazardWarning;
     [SerializeField] private Button[] _buttons;
+    [SerializeField] private Button _playButton;
 
     private void Start()
     {
         ShowHazardWarning(false);
+        SetPlayButton(false);
     }
 
     private void Update()
@@ -25,6 +27,11 @@ public class UIController : Singleton<UIController>
         {
             _buttons[i].interactable = playerControlsActive;
         }
+    }
+
+    public void SetPlayButton(bool isActive)
+    {
+        _playButton.interactable = isActive;
     }
 
     public void ShowHazardWarning(bool hazardWarning)
