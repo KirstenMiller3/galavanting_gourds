@@ -173,7 +173,7 @@ public class Branch : MonoBehaviour {
             var r = Random.Range(0, 10);
             if (i > 0 || isFirst) {
 
-                if (r > 2) {
+                if (r > 7) {
                     Vector3 n = nodes[i].getNormal();
                     Vector3 otherNormal = Vector3.up;
                     Vector3 fw = Vector3.forward;

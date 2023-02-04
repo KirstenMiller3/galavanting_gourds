@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 2573
+  controlID: 8475
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -87,7 +87,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 2574
+  controlID: 8476
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 2575
+  controlID: 8477
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 22c00000
       m_LastClickedID: 0
-      m_ExpandedIDs: 34fbffff82670000e6670000
+      m_ExpandedIDs: 34fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -529,6 +529,28 @@ MonoBehaviour:
       id: Scene View/Tilemap Palette Helper
       index: 12
       layout: 4
+    - dockPosition: 1
+      containerId: overlay-toolbar__top
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: Scene View/Open Tile Palette
+      index: 2
+      layout: 4
+    - dockPosition: 1
+      containerId: overlay-toolbar__top
+      floating: 0
+      collapsed: 0
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: Scene View/Tilemap Focus
+      index: 3
+      layout: 4
   m_WindowGUID: 85521b906695a204ebc1aca8f18bfc76
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
@@ -539,9 +561,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.7135453, y: 1.1567096, z: -2.4779074}
+    m_Target: {x: 0.16860458, y: 1.2207973, z: -0.1926003}
     speed: 2
-    m_Value: {x: -2.7135453, y: 1.1567096, z: -2.4779074}
+    m_Value: {x: 0.16860458, y: 1.2207973, z: -0.1926003}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -588,13 +610,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.25397182, y: -0.013928169, z: 0.003667337, w: -0.9671159}
+    m_Target: {x: -0.33628413, y: -0.16078976, z: 0.05838348, w: -0.9261141}
     speed: 2
-    m_Value: {x: -0.253969, y: -0.013928015, z: 0.0036672961, w: -0.96710515}
+    m_Value: {x: -0.33627805, y: -0.16078684, z: 0.05838242, w: -0.9260973}
   m_Size:
-    m_Target: 0.6202632
+    m_Target: 1.0211505
     speed: 2
-    m_Value: 0.6202632
+    m_Value: 1.0211505
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -717,22 +739,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets/UI
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
-  m_StartGridSize: 64
+  m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Materials
-  m_LastFoldersGridSize: -1
+  - Assets/UI
+  m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\User\Documents\galavanting_gourds
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 186b0000
-    m_LastClickedID: 27416
-    m_ExpandedIDs: 000000000c6b00000e6b000000ca9a3b
+    m_SelectedIDs: a8ba0000
+    m_LastClickedID: 47784
+    m_ExpandedIDs: 000000000c6b00000e6b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -760,7 +782,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000c6b00000e6b000000ca9a3b
+    m_ExpandedIDs: 000000000c6b00000e6b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -785,8 +807,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 22c00000
+    m_LastClickedInstanceID: 49186
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -813,7 +835,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 64
+    m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 247
 --- !u!114 &12

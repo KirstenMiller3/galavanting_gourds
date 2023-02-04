@@ -10,6 +10,7 @@ public class RootController : MonoBehaviour
         public GameObject body;
         public GameObject root;
         public Vector2Int movement;
+        public Vector3 position;
     }
 
     [SerializeField] private GridManager _gridManager;
@@ -74,7 +75,12 @@ public class RootController : MonoBehaviour
     {
         GameObject _section = Instantiate(_bodySection, newPos, Quaternion.identity);
         GameObject root = _rootMaker.AddIvyBranch(transform.position, newPos);
-        _body.Push(new BodySection() { body = _section, movement = movement, root = root });
+        _body.Push(new BodySection() { body = _section, movement = movement, root = root, position = newPos });
+    }
+
+    public void OnClickUndo()
+    {
+        Undo();
     }
 
     public bool Undo()
