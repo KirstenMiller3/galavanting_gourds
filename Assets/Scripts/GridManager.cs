@@ -8,7 +8,7 @@ public partial class GridManager : MonoBehaviour
     public struct GridSquareData
     {
         public Transform Transform;
-        public Vector3 Position;
+        public Vector3 Position => Transform.position + (Vector3.up * 0.5f);
         public bool IsOccupied;
         public bool IsHazard;
     }

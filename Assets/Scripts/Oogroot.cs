@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class Oogroot : MonoBehaviour
 {
-   public Vector3 WorldPos;
 
 }
