@@ -188,7 +188,7 @@ public class SuccessState : IGameState
 
     public void OnEnter()
     {
-
+        UIController.Instance.SetPlayButton(true);
     }
 
     public void OnExit()

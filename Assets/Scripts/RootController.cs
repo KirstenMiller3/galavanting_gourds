@@ -59,7 +59,7 @@ public class RootController : MonoBehaviour
     private void Move(Vector2Int movement)
     {
         ScreenShake.Instance.Shake(0.1f, 0.02f);
-        bool canMove = _gridManager.Move(movement, out bool isHazard, out string buttonId);
+        bool canMove = _gridManager.Move(movement, out GridType gridType, out string buttonId);
         if (canMove)
         {
             Vector3 newPos = _gridManager.GetPosition();
@@ -68,10 +68,14 @@ public class RootController : MonoBehaviour
             transform.position = newPos;
         }
 
-        if(isHazard) {
+        if(gridType == GridType.Hazard) {
             ScreenShake.Instance.Shake(0.2f, 0.4f);
             _hitFx.Play();
             GameController.Instance.SetState(GameController.GameState.Hazard);
+        }
+        else if(gridType == GridType.End)
+        {
+            GameController.Instance.SetState(GameController.GameState.Success);
         }
 
         if (!string.IsNullOrEmpty(buttonId))
