@@ -108,6 +108,9 @@ public class WalkingState : IOogrootState
     RootController _rootController;
 
     List<Vector3> _route;
+
+    float _chirpTimer; 
+
     public void OnEnter()
     {
         _rootController = GameController.Instance.RootController;
@@ -141,7 +144,9 @@ public class WalkingState : IOogrootState
         }
         else
         {
-            if (AudioManager.instance.sounds.Any(s => s.sName.Contains("chirp")) && !AudioManager.instance.sounds.Any(s => s.source.isPlaying)) {
+            _chirpTimer += Time.deltaTime;
+            if (_chirpTimer >= 0.4f && AudioManager.instance.sounds.Any(s => s.sName.Contains("chirp") && !s.source.isPlaying)) {
+                _chirpTimer = 0;
                 int num = UnityEngine.Random.Range(1, 15);
                 AudioManager.instance.Play($"chirp_{num}");
                     }
