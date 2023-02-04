@@ -1,6 +1,8 @@
 using Milo.Tools;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -38,12 +40,14 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
 
     private Dictionary<OogrootState, IOogrootState> _states = new Dictionary<OogrootState, IOogrootState>();
 
-
     protected override void Awake()
     {
         base.Awake();
         _states.Add(OogrootState.Idle, new IdleState());
         _states.Add(OogrootState.Ready, new ReadyState());
+        _states.Add(OogrootState.Walking, new WalkingState());
+        _states.Add(OogrootState.Planting, new PlantingState());
+
 
     }
 
@@ -96,6 +100,48 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
     }
 }
 
+
+public class WalkingState : IOogrootState
+{
+    public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Walking;
+
+    RootController _rootController;
+
+    List<Vector3> _route;
+    public void OnEnter()
+    {
+        _rootController = GameController.Instance.RootController;
+        _route = _rootController.Route.Select(r => r.position).ToList();
+        _route.Reverse();
+        _route = _route.Select(s => s += new Vector3(0, 0.3f, 0)).ToList();
+        _route.ForEach(p => Debug.Log("route " + p));
+
+        var oogrootsArrived = 0;
+
+        foreach (var oogroot in OogrootController.Instance.oogroots)
+        {
+            oogroot.GetComponent<Oogroot>().SetTargetPositions(_route.ToArray());
+
+        }
+
+    }
+
+    public void OnExit()
+    {
+
+    }
+
+    public void OnUpdate()
+    {
+        if (OogrootController.Instance.oogroots.Select(o => o.GetComponent<Oogroot>().Arrived).All(x => x))
+        {
+            Debug.Log("planting");
+            OogrootController.Instance.SetState(OogrootController.OogrootState.Planting);
+
+        }
+    }
+}
+
 public class IdleState : IOogrootState
 {
     public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Idle;
@@ -116,9 +162,31 @@ public class IdleState : IOogrootState
     }
 }
 
+public class PlantingState : IOogrootState
+{
+    public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Planting;
 
+    public void OnEnter()
+    {
+
+    }
+
+    public void OnExit()
+    {
+
+    }
+
+    public void OnUpdate()
+    {
+
+    }
+}
 public class ReadyState : IOogrootState
 {
+
+    float _timer;
+
+    float _timeout = 3;
     public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Ready;
 
     private List<Vector3> StartPos = new List<Vector3>();
@@ -127,7 +195,9 @@ public class ReadyState : IOogrootState
         foreach (var oogroot in OogrootController.Instance.oogroots)
         {
             StartPos.Add(oogroot.transform.position);
+
         }
+
     }
 
     public void OnExit()
@@ -139,15 +209,22 @@ public class ReadyState : IOogrootState
     {
         var origin = GameController.Instance.gridManager.GridOrigin.Position;
 
-        for (int i = 0; i < StartPos.Count; i++) 
+        for (int i = 0; i < StartPos.Count; i++)
         {
-            var dest = ((StartPos[i] - origin) / 2f ) + Vector3.up;
-            Debug.Log($"dest {dest}");
-            Debug.Log($"pos {OogrootController.Instance.oogroots[i].transform.position}");
+            var offset = Random.Range(-0.3f, 0.3f);
+            var dest = origin + new Vector3(offset, 0, offset) + (new Vector3(0, .3f,0));
             OogrootController.Instance.oogroots[i].transform.position = Vector3.Lerp(OogrootController.Instance.oogroots[i].transform.position, dest, Time.deltaTime * 2f);
-            
 
 
         }
+
+        _timer += Time.deltaTime;
+
+        if (_timer >= _timeout)
+        {
+            OogrootController.Instance.SetState(OogrootController.OogrootState.Walking);
+
+        }
     }
+
 }
