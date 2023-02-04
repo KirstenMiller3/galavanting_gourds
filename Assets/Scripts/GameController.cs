@@ -21,7 +21,8 @@ public class GameController : Singleton<GameController>
         Hazard,
         Pikmining,
         Death,
-        Success
+        Success,
+        End
     }
 
     [SerializeField] private RootController _rootController;
@@ -47,6 +48,7 @@ public class GameController : Singleton<GameController>
         _states.Add(GameState.Hazard, new HazardState());
         _states.Add(GameState.Pikmining, new PikminingState());
         _states.Add(GameState.Success, new SuccessState());
+        _states.Add(GameState.End, new EndState());
     }
 
     private void Start()
@@ -172,12 +174,6 @@ public class PikminingState : IGameState
 
     public void OnUpdate()
     {
-        _tempTimer += Time.deltaTime;
-        if(_tempTimer >= _testTime)
-        {
-            GameController.Instance.SetState(GameController.GameState.Success);
-        }
-       //todo: move pikmin down root
     }
 }
 
@@ -189,6 +185,24 @@ public class SuccessState : IGameState
     public void OnEnter()
     {
         UIController.Instance.SetPlayButton(true);
+    }
+
+    public void OnExit()
+    {
+
+    }
+
+    public void OnUpdate()
+    {
+
+    }
+}
+
+public class EndState : IGameState
+{
+    public GameController.GameState GameState => GameController.GameState.End;
+    public void OnEnter()
+    {
     }
 
     public void OnExit()
