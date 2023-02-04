@@ -1,6 +1,7 @@
 using Milo.Tools;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,9 +15,11 @@ public interface IOogrootState
 
 
 
-public class OogrootController : Singleton<OogrootController>
+public class OogrootController : Milo.Tools.Singleton<OogrootController>
 {
     private const int MaxOogroots = 10;
+
+    public List<Oogroot> oogroots;
     public enum OogrootState
     {
         Idle, Ready, Walking, Planting, Dying
@@ -50,7 +53,12 @@ public class OogrootController : Singleton<OogrootController>
             var z = GridManager.GridOrigin.Position.z + zOffset;
             var position = new Vector3(x, GridManager.GridOrigin.Position.y, z);
 
-            Instantiate(Resources.Load("oogroot"), position, Quaternion.identity);
+            GameObject.Instantiate(Resources.Load("oogroot"), position, Quaternion.identity);
+
+            var o = new Oogroot();
+            o.WorldPos = position;
+
+            oogroots.Add(o);
         }
         SetState(OogrootState.Idle);
 
@@ -112,6 +120,14 @@ public class ReadyState : IOogrootState
    
     public void OnEnter()
     {
+        var origin = GameController.Instance.gridManager.GridOrigin.Position;
+
+        foreach(var o in OogrootController.Instance.oogroots)
+        {
+            var dest = origin - o.transform.position;
+            dest = Vector3.Scale(dest, new Vector3(.8f, 1, .8f));
+            o.transform.position = Vector3.Lerp(o.transform.position, origin, Time.deltaTime * 2);
+        }
        
     }
 

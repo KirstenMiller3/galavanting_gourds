@@ -16,6 +16,7 @@ public class RootController : MonoBehaviour
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private ProceduralIvy _rootMaker;
     [SerializeField] private GameObject _bodySection;
+    [SerializeField] private ParticleSystem _hitFx;
 
     private Stack<BodySection> _body = new Stack<BodySection>();
 
@@ -67,6 +68,7 @@ public class RootController : MonoBehaviour
         }
 
         if(isHazard) {
+            _hitFx.Play();
             GameController.Instance.SetState(GameController.GameState.Hazard);
         }
     }
