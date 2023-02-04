@@ -16,6 +16,7 @@ public class RootController : MonoBehaviour
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private ProceduralIvy _rootMaker;
     [SerializeField] private GameObject _bodySection;
+    [SerializeField] private ParticleSystem _hitFx;
 
     private Stack<BodySection> _body = new Stack<BodySection>();
 
@@ -57,7 +58,8 @@ public class RootController : MonoBehaviour
 
     private void Move(Vector2Int movement)
     {
-        bool canMove = _gridManager.Move(movement, true, out bool isHazard);
+        ScreenShake.Instance.Shake(0.1f, 0.02f);
+        bool canMove = _gridManager.Move(movement, true, out bool isHazard, out bool isButton);
         if (canMove)
         {
             Vector3 newPos = _gridManager.GetPosition();
@@ -67,6 +69,8 @@ public class RootController : MonoBehaviour
         }
 
         if(isHazard) {
+            ScreenShake.Instance.Shake(0.2f, 0.4f);
+            _hitFx.Play();
             GameController.Instance.SetState(GameController.GameState.Hazard);
         }
     }
@@ -89,6 +93,8 @@ public class RootController : MonoBehaviour
         {
             return false;
         }
+
+        ScreenShake.Instance.Shake(0.1f, 0.01f);
 
         GameObject partToUndo = _body.Peek().body;
         Destroy(partToUndo);
