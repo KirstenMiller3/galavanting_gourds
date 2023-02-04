@@ -3,33 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
-public class GridManager : MonoBehaviour
+public partial class GridManager : MonoBehaviour
 {
-    public struct GridSquare
+    public struct GridSquareData
     {
         public Transform Transform;
+        public Vector3 Position;
         public bool IsOccupied;
+        public bool IsHazard;
     }
 
-    [SerializeField] private Transform[] _points;
+    [SerializeField] private GridSquare[] _points;
     [SerializeField] private int _rowSize = 5;
 
-    private GridSquare[,] _grid;
+    private GridSquareData[,] _grid;
 
     private Vector2Int _gridPos = new Vector2Int();
 
     private void Awake()  {
-        _grid = new GridSquare[_rowSize, _rowSize];
+        _grid = new GridSquareData[_rowSize, _rowSize];
         for(int i = 0; i  < _points.Length; i++) {
             int row = (int)(i / _rowSize);
             int col = (int)(i % _rowSize);
-            _grid[row, col].Transform = _points[i];
+            _grid[row, col].Transform = _points[i].transform;
+            _grid[row, col].IsOccupied = _points[i].IsHazard;
+            _grid[row, col].IsHazard = _points[i].IsHazard;
         }
 
         _grid[0, 0].IsOccupied = true;
     }
 
-    public bool Move(Vector2Int movement, bool isOccupied)
+    public bool Move(Vector2Int movement, bool isOccupied, out bool isHazard)
     {
         Vector2Int desiredPos = new Vector2Int();
         desiredPos = _gridPos;
@@ -37,6 +41,14 @@ public class GridManager : MonoBehaviour
 
         desiredPos.x = Mathf.Clamp(desiredPos.x, 0, _rowSize - 1);
         desiredPos.y = Mathf.Clamp(desiredPos.y, 0, _rowSize - 1);
+
+        isHazard = _grid[desiredPos.x, desiredPos.y].IsHazard;
+
+        if (isHazard)
+        {
+            Debug.Log("HIT HAZARD");
+            return false;
+        }
 
         if (_grid[desiredPos.x, desiredPos.y].IsOccupied)
         {
