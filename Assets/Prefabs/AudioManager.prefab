@@ -245,4 +245,20 @@ MonoBehaviour:
     mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
       type: 2}
     source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 9f63c68bd5568694bb07d33fc6a3da6b, type: 3}
+    sName: chirp_8
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 9b6ed2e8fb084ee478cefef452cb7584, type: 3}
+    sName: chirp_9
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
   masterMixer: {fileID: 24100000, guid: 594970546b92b9842af94076cbf34440, type: 2}
