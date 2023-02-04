@@ -18,6 +18,8 @@ public partial class GridManager : MonoBehaviour
 
     private GridSquareData[,] _grid;
 
+    public GridSquareData GridOrigin => _grid[0,0];
+
     private Vector2Int _gridPos = new Vector2Int();
 
     private void Awake()  {

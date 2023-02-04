@@ -13,22 +13,19 @@ public interface IOogrootState
 }
 
 
-// empty gameobject with cubes inside
-// spawn lots at 0,0 in random pos
-//move them up above root
-// follow route
 
 public class OogrootController : Singleton<OogrootController>
 {
+    private const int MaxOogroots = 10;
     public enum OogrootState
     {
-       Idle, Ready, Walking, Planting, Dying
+        Idle, Ready, Walking, Planting, Dying
     }
 
-    [SerializeField] private RootController _rootController;
+    [SerializeField] private GridManager _gridManager;
 
     public OogrootState State => _state != null ? _state.OogrootState : OogrootState.Idle;
-    public RootController RootController => _rootController;
+    public GridManager GridManager => _gridManager;
 
     public bool PauseControls => State != OogrootState.Idle;
 
@@ -44,9 +41,19 @@ public class OogrootController : Singleton<OogrootController>
         _states.Add(OogrootState.Idle, new IdleState());
     }
 
-    private void Start()
-    {
+    private void Start() { 
+    
+        for(int i = 0; i < MaxOogroots; i++) { 
+            float xOffset = Random.Range(-0.4f, .4f);
+            float zOffset = Random.Range(-0.4f, .4f);
+            var x = GridManager.GridOrigin.Position.x + xOffset;
+            var z = GridManager.GridOrigin.Position.z + zOffset;
+            var position = new Vector3(x, GridManager.GridOrigin.Position.y, z);
+
+            Instantiate(Resources.Load("oogroot"), position, Quaternion.identity);
+        }
         SetState(OogrootState.Idle);
+
     }
 
     private void Update()
