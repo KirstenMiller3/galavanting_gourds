@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public enum GridType
 {
@@ -16,6 +17,13 @@ public class GridSquare : MonoBehaviour
 
 
     public string ButtonId;
+
+
+    public void Start()
+    {
+        transform.DOPunchScale(Vector3.up, 1f);
+    }
+
 
     private void OnDrawGizmosSelected()
     {
