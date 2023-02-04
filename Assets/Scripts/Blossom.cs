@@ -40,16 +40,19 @@ public class Blossom : MonoBehaviour {
     }
 
     void Update() {
-        //if (animate) {
-        //    currentAmount += Time.deltaTime * growthSpeed;
-        //    material.SetFloat(AMOUNT, currentAmount);
-        //    if (currentAmount >= MAX) {
-        //        animate = false;
-        //        material.SetFloat(AMOUNT, MAX);
-        //        foreach (var r in renderers) {
-        //            MeshManager.Instance.addMesh(r.transform, r.GetComponent<MeshFilter>().mesh, r.GetComponent<MeshRenderer>().sharedMaterial);
-        //        }
-        //    }
-        //}
+        if (animate)
+        {
+            currentAmount += Time.deltaTime * growthSpeed;
+            material.SetFloat(AMOUNT, currentAmount);
+            if (currentAmount >= MAX)
+            {
+                animate = false;
+                material.SetFloat(AMOUNT, MAX);
+                foreach (var r in renderers)
+                {
+                    MeshManager.instance.addMesh(r.transform, r.GetComponent<MeshFilter>().mesh, r.GetComponent<MeshRenderer>().sharedMaterial);
+                }
+            }
+        }
     }
 }

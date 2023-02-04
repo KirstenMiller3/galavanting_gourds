@@ -60,9 +60,8 @@ public class RootController : MonoBehaviour
         if (canMove)
         {
             Vector3 newPos = _gridManager.GetPosition();
-            GameObject root = _rootMaker.AddIvyBranch(transform.position, newPos);
 
-            SpawnBodySection(movement, root);
+            SpawnBodySection(movement, newPos);
             transform.position = newPos;
         }
 
@@ -71,9 +70,10 @@ public class RootController : MonoBehaviour
         }
     }
 
-    private void SpawnBodySection(Vector2Int movement, GameObject root)
+    private void SpawnBodySection(Vector2Int movement, Vector3 newPos)
     {
-        GameObject _section = Instantiate(_bodySection, transform.position, Quaternion.identity);
+        GameObject _section = Instantiate(_bodySection, newPos, Quaternion.identity);
+        GameObject root = _rootMaker.AddIvyBranch(transform.position, newPos);
         _body.Push(new BodySection() { body = _section, movement = movement, root = root });
     }
 

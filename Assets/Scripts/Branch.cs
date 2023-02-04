@@ -68,27 +68,32 @@ public class Branch : MonoBehaviour {
 
 
     void Update() {
-        //if (animate) {
-        //    currentAmount += Time.deltaTime * growthSpeed;
-        //    material.SetFloat(AMOUNT, currentAmount);
+        if (animate)
+        {
+            currentAmount += Time.deltaTime * growthSpeed;
+            material.SetFloat(AMOUNT, currentAmount);
 
-        //    if (wantBlossoms) {
-        //        var estimateNodeID = (int)remap(currentAmount, -.5f, .5f, 0, branchNodes.Count - 1);
+            if (wantBlossoms)
+            {
+                var estimateNodeID = (int)remap(currentAmount, -.5f, .5f, 0, branchNodes.Count - 1);
 
-        //        if (blossoms.ContainsKey(estimateNodeID)) {
-        //            Blossom b = blossoms[estimateNodeID];
-        //            if (!b.isGrowing()) {
-        //                b.grow(growthSpeed);
-        //            }
-        //        }
-        //    }
+                if (blossoms.ContainsKey(estimateNodeID))
+                {
+                    Blossom b = blossoms[estimateNodeID];
+                    if (!b.isGrowing())
+                    {
+                        b.grow(growthSpeed);
+                    }
+                }
+            }
 
-        //    if (currentAmount >= MAX) {
-        //        animate = false;
-        //        material.SetFloat(AMOUNT, MAX);
-        //        MeshManager.Instance.addMesh(transform, meshFilter.mesh, meshRenderer.sharedMaterial);
-        //    }
-        //}
+            if (currentAmount >= MAX)
+            {
+                animate = false;
+                material.SetFloat(AMOUNT, MAX);
+                MeshManager.instance.addMesh(transform, meshFilter.mesh, meshRenderer.sharedMaterial);
+            }
+        }
 
     }
 

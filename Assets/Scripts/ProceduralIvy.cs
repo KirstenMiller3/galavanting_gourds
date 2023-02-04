@@ -223,7 +223,7 @@ public class ProceduralIvy : MonoBehaviour {
 
 
     void combineAndClear() {
-        MeshManager.Instance.combineAll();
+        MeshManager.instance.combineAll();
         foreach (Transform t in transform) {
             Destroy(t.gameObject);
         }
