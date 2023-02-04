@@ -26,6 +26,9 @@ public class GameController : Singleton<GameController>
 
     [SerializeField] private RootController _rootController;
 
+    public GridManager gridManager;
+
+
     public GameState State => _state != null ? _state.GameState : GameState.None;
     public RootController RootController => _rootController;
 
@@ -159,6 +162,7 @@ public class PikminingState : IGameState
     public void OnEnter()
     {
         //To do: Make pikmin hop onto root
+        OogrootController.Instance.SetState(OogrootController.OogrootState.Ready);
     }
 
     public void OnExit()
