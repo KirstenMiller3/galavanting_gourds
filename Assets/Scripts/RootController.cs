@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RootController : MonoBehaviour
@@ -19,6 +20,8 @@ public class RootController : MonoBehaviour
     [SerializeField] private ParticleSystem _hitFx;
 
     private Stack<BodySection> _body = new Stack<BodySection>();
+
+    public Stack<BodySection> Route => _body;
 
     public void Update()
     {
