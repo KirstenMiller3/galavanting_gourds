@@ -8,11 +8,12 @@ public class RootController : MonoBehaviour
     public struct BodySection
     {
         public GameObject body;
+        public GameObject root;
         public Vector2Int movement;
     }
 
     [SerializeField] private GridManager _gridManager;
-
+    [SerializeField] private ProceduralIvy _rootMaker;
     [SerializeField] private GameObject _bodySection;
 
     private Stack<BodySection> _body = new Stack<BodySection>();
@@ -58,8 +59,10 @@ public class RootController : MonoBehaviour
         bool canMove = _gridManager.Move(movement, true, out bool isHazard);
         if (canMove)
         {
-            SpawnBodySection(movement);
             Vector3 newPos = _gridManager.GetPosition();
+            GameObject root = _rootMaker.AddIvyBranch(transform.position, newPos);
+
+            SpawnBodySection(movement, root);
             transform.position = newPos;
         }
 
@@ -68,10 +71,10 @@ public class RootController : MonoBehaviour
         }
     }
 
-    private void SpawnBodySection(Vector2Int movement)
+    private void SpawnBodySection(Vector2Int movement, GameObject root)
     {
         GameObject _section = Instantiate(_bodySection, transform.position, Quaternion.identity);
-        _body.Push(new BodySection() { body = _section, movement = movement });
+        _body.Push(new BodySection() { body = _section, movement = movement, root = root });
     }
 
     public bool Undo()
@@ -83,6 +86,7 @@ public class RootController : MonoBehaviour
 
         GameObject partToUndo = _body.Peek().body;
         Destroy(partToUndo);
+        Destroy(_body.Peek().root);
 
         _gridManager.UndoMove(_body.Peek().movement);
         transform.position = _gridManager.GetPosition();
