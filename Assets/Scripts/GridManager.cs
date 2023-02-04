@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
@@ -7,16 +8,16 @@ public partial class GridManager : MonoBehaviour
 {
     public struct GridSquareData
     {
-        public Transform Transform;
+        public Vector3 TilePosition;
         public GridType GridType;
         public bool IsOccupied;
         public bool IsButton => !string.IsNullOrEmpty(ButtonId);
         public string ButtonId;
-        public Vector3 Position => Transform.position + (Vector3.up * 0.5f);
+        public Vector3 Position => TilePosition + (Vector3.up * 0.5f);
     }
 
-    [SerializeField] private GridSquare[] _points;
     [SerializeField] private int _rowSize = 5;
+    [SerializeField] private int _colSize = 5;
 
     private GridSquareData[,] _grid;
 
@@ -25,14 +26,41 @@ public partial class GridManager : MonoBehaviour
     private Vector2Int _gridPos = new Vector2Int();
 
     private void Awake()  {
-        _grid = new GridSquareData[_rowSize, _rowSize];
-        for(int i = 0; i  < _points.Length; i++) {
-            int row = (int)(i / _rowSize);
-            int col = (int)(i % _rowSize);
-            _grid[row, col].Transform = _points[i].transform;
-            _grid[row, col].GridType = _points[i].GridType;
-            _grid[row, col].IsOccupied = _points[i].IsOccupied;
-            _grid[row, col].ButtonId = _points[i].ButtonId;
+        GridSquare[] tiles = GetComponentsInChildren<GridSquare>();
+
+        _grid = new GridSquareData[_rowSize, _colSize];
+
+        //int count = 0;
+        //for(int rows = 0; rows < _rowSize; rows++)
+        //{
+        //    for(int cols = 0; cols < _colSize; cols++)
+        //    {
+        //        _grid[rows, cols].TilePosition = new Vector3(rows, 0f, cols);
+        //        _grid[rows, cols].GridType = tiles[count].GridType;
+        //        _grid[rows, cols].IsOccupied = tiles[count].IsOccupied;
+        //        _grid[rows, cols].ButtonId = tiles[count].ButtonId;
+
+        //        count++;
+        //    }
+        //}
+
+        //for(int i = 0; i  < _points.Count; i++) {
+        //    int row = (int)(i / _rowSize);
+        //    int col = (int)(i % _rowSize);
+        //    _grid[row, col].TilePosition = new Vector3(row, 0f, col);
+        //    _grid[row, col].GridType = _points[i].GridType;
+        //    _grid[row, col].IsOccupied = _points[i].IsOccupied;
+        //    _grid[row, col].ButtonId = _points[i].ButtonId;
+        //}
+
+        for (int i = 0; i < tiles.Length; i++)
+        {
+            int row = (int)tiles[i].transform.position.x;
+            int col = (int)tiles[i].transform.position.z;
+            _grid[row, col].TilePosition = new Vector3(row, 0f, col);
+            _grid[row, col].GridType = tiles[i].GridType;
+            _grid[row, col].IsOccupied = tiles[i].IsOccupied;
+            _grid[row, col].ButtonId = tiles[i].ButtonId;
         }
 
         _grid[0, 0].IsOccupied = true;
@@ -108,10 +136,9 @@ public partial class GridManager : MonoBehaviour
         }
     }
 
-
     public Vector3 GetPosition()
     {
-        Vector3 gridPos = _grid[_gridPos.x, _gridPos.y].Transform.position;
+        Vector3 gridPos = _grid[_gridPos.x, _gridPos.y].TilePosition;
         return new Vector3(gridPos.x, 0f, gridPos.z);
     }
 }
