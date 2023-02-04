@@ -8,16 +8,24 @@ public class RootController : MonoBehaviour
     public struct BodySection
     {
         public GameObject body;
+        public GameObject root;
         public Vector2Int movement;
     }
 
     [SerializeField] private GridManager _gridManager;
+    [SerializeField] private ProceduralIvy _rootMaker;
     [SerializeField] private GameObject _bodySection;
 
     private Stack<BodySection> _body = new Stack<BodySection>();
 
     public void Update()
     {
+        if (GameController.Instance.PauseControls)
+        {
+            return;
+        }
+
+
         InputUpdate();
     }
 
@@ -48,33 +56,42 @@ public class RootController : MonoBehaviour
 
     private void Move(Vector2Int movement)
     {
-        if(_gridManager.Move(movement, true))
+        bool canMove = _gridManager.Move(movement, true, out bool isHazard);
+        if (canMove)
         {
-            SpawnBodySection(movement);
             Vector3 newPos = _gridManager.GetPosition();
+
+            SpawnBodySection(movement, newPos);
             transform.position = newPos;
+        }
+
+        if(isHazard) {
+            GameController.Instance.SetState(GameController.GameState.Hazard);
         }
     }
 
-    private void SpawnBodySection(Vector2Int movement)
+    private void SpawnBodySection(Vector2Int movement, Vector3 newPos)
     {
-        GameObject _section = Instantiate(_bodySection, transform.position, Quaternion.identity);
-        _body.Push(new BodySection() { body = _section, movement = movement });
+        GameObject _section = Instantiate(_bodySection, newPos, Quaternion.identity);
+        GameObject root = _rootMaker.AddIvyBranch(transform.position, newPos);
+        _body.Push(new BodySection() { body = _section, movement = movement, root = root });
     }
 
-    private void Undo()
+    public bool Undo()
     {
         if (_body.Count == 0)
         {
-            return;
+            return false;
         }
 
         GameObject partToUndo = _body.Peek().body;
         Destroy(partToUndo);
+        Destroy(_body.Peek().root);
 
         _gridManager.UndoMove(_body.Peek().movement);
         transform.position = _gridManager.GetPosition();
 
         _body.Pop();
+        return true;
     }
 }
