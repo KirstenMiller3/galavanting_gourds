@@ -117,7 +117,7 @@ public class HazardState : IGameState
 
     public void OnExit()
     {
-
+        UIController.Instance.ShowHazardWarning(false);
     }
 
     public void OnUpdate()
