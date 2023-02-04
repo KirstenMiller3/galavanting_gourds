@@ -30,7 +30,5 @@ public class GridSquare : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawCube(transform.position + (Vector3.up * 1f), Vector3.one * 0.2f);
         }
-
-        gameObject.name = "GridSquare_" + GridType.ToString();
     }
 }
