@@ -61,6 +61,8 @@ public class RootController : MonoBehaviour
 
     private void Move(Vector2Int movement)
     {
+        int num = UnityEngine.Random.Range(1, 4);
+        AudioManager.instance.Play($"vine_{num}");
         ScreenShake.Instance.Shake(0.1f, 0.02f);
         bool canMove = _gridManager.Move(movement, out bool isHazard, out string buttonId);
         if (canMove)
@@ -102,6 +104,8 @@ public class RootController : MonoBehaviour
             return false;
         }
 
+        int num = UnityEngine.Random.Range(1, 10);
+        AudioManager.instance.Play($"vine_retract_{num}");
         ScreenShake.Instance.Shake(0.1f, 0.01f);
 
         GameObject partToUndo = _body.Peek().body;
