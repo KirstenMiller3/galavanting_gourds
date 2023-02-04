@@ -94,6 +94,11 @@ if (canMove)
 
     private void ShakeOnDelay_Move()
     {
+        if(GameController.Instance.State == GameController.GameState.Pikmining 
+            || GameController.Instance.State == GameController.GameState.Success)
+        {
+            return;
+        }
         ScreenShake.Instance.Shake(0.1f, 0.02f);
         AudioManager.instance.Stop(rootSoundName);
 
