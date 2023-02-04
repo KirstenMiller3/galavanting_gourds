@@ -12,12 +12,19 @@ public class RootController : MonoBehaviour
     }
 
     [SerializeField] private GridManager _gridManager;
+
     [SerializeField] private GameObject _bodySection;
 
     private Stack<BodySection> _body = new Stack<BodySection>();
 
     public void Update()
     {
+        if (GameController.Instance.PauseControls)
+        {
+            return;
+        }
+
+
         InputUpdate();
     }
 
@@ -48,11 +55,16 @@ public class RootController : MonoBehaviour
 
     private void Move(Vector2Int movement)
     {
-        if(_gridManager.Move(movement, true))
+        bool canMove = _gridManager.Move(movement, true, out bool isHazard);
+        if (canMove)
         {
             SpawnBodySection(movement);
             Vector3 newPos = _gridManager.GetPosition();
             transform.position = newPos;
+        }
+
+        if(isHazard) {
+            GameController.Instance.SetState(GameController.GameState.Hazard);
         }
     }
 
@@ -62,11 +74,11 @@ public class RootController : MonoBehaviour
         _body.Push(new BodySection() { body = _section, movement = movement });
     }
 
-    private void Undo()
+    public bool Undo()
     {
         if (_body.Count == 0)
         {
-            return;
+            return false;
         }
 
         GameObject partToUndo = _body.Peek().body;
@@ -76,5 +88,6 @@ public class RootController : MonoBehaviour
         transform.position = _gridManager.GetPosition();
 
         _body.Pop();
+        return true;
     }
 }
