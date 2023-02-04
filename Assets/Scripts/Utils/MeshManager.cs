@@ -28,7 +28,7 @@ public class MeshGroup {
 //     }
 // }
 
-public class MeshManager : Singleton<MeshManager> {
+public class MeshManager : RootSingleton<MeshManager> {
     Dictionary<string, MeshGroupRenderer> meshGroupRenderers;
     GameObject meshParent;
 

@@ -26,6 +26,9 @@ public class GameController : Singleton<GameController>
 
     [SerializeField] private RootController _rootController;
 
+    public GridManager gridManager;
+
+
     public GameState State => _state != null ? _state.GameState : GameState.None;
     public RootController RootController => _rootController;
 
@@ -42,6 +45,8 @@ public class GameController : Singleton<GameController>
         base.Awake();
         _states.Add(GameState.Rooting, new RootingState());
         _states.Add(GameState.Hazard, new HazardState());
+        _states.Add(GameState.Pikmining, new PikminingState());
+        _states.Add(GameState.Success, new SuccessState());
     }
 
     private void Start()
@@ -74,6 +79,11 @@ public class GameController : Singleton<GameController>
         _state.OnEnter();
 
         OnStateChanged?.Invoke(state);
+    }
+
+    public void OnClickStart()
+    {
+        SetState(GameState.Pikmining);
     }
 }
 
@@ -138,5 +148,56 @@ public class HazardState : IGameState
                 GameController.Instance.SetState(GameController.GameState.Rooting);
             }
         }
+    }
+}
+
+
+public class PikminingState : IGameState
+{
+    private const float _testTime = 3f;
+
+    private float _tempTimer = 0f;
+    public GameController.GameState GameState => GameController.GameState.Pikmining;
+
+    public void OnEnter()
+    {
+        //To do: Make pikmin hop onto root
+        OogrootController.Instance.SetState(OogrootController.OogrootState.Ready);
+    }
+
+    public void OnExit()
+    {
+
+    }
+
+    public void OnUpdate()
+    {
+        _tempTimer += Time.deltaTime;
+        if(_tempTimer >= _testTime)
+        {
+            GameController.Instance.SetState(GameController.GameState.Success);
+        }
+       //todo: move pikmin down root
+    }
+}
+
+
+public class SuccessState : IGameState
+{
+    public GameController.GameState GameState => GameController.GameState.Success;
+
+    public void OnEnter()
+    {
+
+    }
+
+    public void OnExit()
+    {
+
+    }
+
+    public void OnUpdate()
+    {
+
     }
 }

@@ -18,6 +18,8 @@ public partial class GridManager : MonoBehaviour
 
     private GridSquareData[,] _grid;
 
+    public GridSquareData GridOrigin => _grid[0,0];
+
     private Vector2Int _gridPos = new Vector2Int();
 
     private void Awake()  {
@@ -26,7 +28,7 @@ public partial class GridManager : MonoBehaviour
             int row = (int)(i / _rowSize);
             int col = (int)(i % _rowSize);
             _grid[row, col].Transform = _points[i].transform;
-            _grid[row, col].IsOccupied = _points[i].IsHazard;
+            //_grid[row, col].IsOccupied = _points[i].IsHazard;
             _grid[row, col].IsHazard = _points[i].IsHazard;
         }
 
@@ -44,11 +46,11 @@ public partial class GridManager : MonoBehaviour
 
         isHazard = _grid[desiredPos.x, desiredPos.y].IsHazard;
 
-        if (isHazard)
-        {
-            Debug.Log("HIT HAZARD");
-            return false;
-        }
+        //if (isHazard)
+        //{
+        //    Debug.Log("HIT HAZARD");
+        //    return true;
+        //}
 
         if (_grid[desiredPos.x, desiredPos.y].IsOccupied)
         {

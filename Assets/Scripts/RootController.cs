@@ -10,11 +10,13 @@ public class RootController : MonoBehaviour
         public GameObject body;
         public GameObject root;
         public Vector2Int movement;
+        public Vector3 position;
     }
 
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private ProceduralIvy _rootMaker;
     [SerializeField] private GameObject _bodySection;
+    [SerializeField] private ParticleSystem _hitFx;
 
     private Stack<BodySection> _body = new Stack<BodySection>();
 
@@ -60,21 +62,27 @@ public class RootController : MonoBehaviour
         if (canMove)
         {
             Vector3 newPos = _gridManager.GetPosition();
-            GameObject root = _rootMaker.AddIvyBranch(transform.position, newPos);
 
-            SpawnBodySection(movement, root);
+            SpawnBodySection(movement, newPos);
             transform.position = newPos;
         }
 
         if(isHazard) {
+            _hitFx.Play();
             GameController.Instance.SetState(GameController.GameState.Hazard);
         }
     }
 
-    private void SpawnBodySection(Vector2Int movement, GameObject root)
+    private void SpawnBodySection(Vector2Int movement, Vector3 newPos)
     {
-        GameObject _section = Instantiate(_bodySection, transform.position, Quaternion.identity);
-        _body.Push(new BodySection() { body = _section, movement = movement, root = root });
+        GameObject _section = Instantiate(_bodySection, newPos, Quaternion.identity);
+        GameObject root = _rootMaker.AddIvyBranch(transform.position, newPos);
+        _body.Push(new BodySection() { body = _section, movement = movement, root = root, position = newPos });
+    }
+
+    public void OnClickUndo()
+    {
+        Undo();
     }
 
     public bool Undo()
