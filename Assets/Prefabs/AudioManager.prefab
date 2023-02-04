@@ -149,4 +149,100 @@ MonoBehaviour:
     mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
       type: 2}
     source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: a17dc568fbba68b428c668d1f8ca05ba, type: 3}
+    sName: chirp_1
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: cbf377097a0d17d4f92e011849c80a98, type: 3}
+    sName: chirp_2
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 049bcb7846fa5784aa4892beb9ab7007, type: 3}
+    sName: chirp_3
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 3db17df6128b7f244a9fe1c2438aee52, type: 3}
+    sName: chirp_4
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 7792a9de68e0f0245b32554550e3b51d, type: 3}
+    sName: chirp_5
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: df07674fc78e28241a3f8f3950f12760, type: 3}
+    sName: chirp_6
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: c2d7dc33b150a944abb6c9a9fb06af93, type: 3}
+    sName: chirp_7
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 05b8a5067d32f494ab164188c404403e, type: 3}
+    sName: chirp_10
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: c7392a2f6b5113c439d49be9746453e7, type: 3}
+    sName: chirp_11
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: ef5ca18d42cc8734992902f5edf6d33e, type: 3}
+    sName: chirp_12
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: f355da56cefd728459bfaf3183b2854f, type: 3}
+    sName: chirp_13
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 2da39599398854d4294e27c0bb9b1fe6, type: 3}
+    sName: chirp_14
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
   masterMixer: {fileID: 24100000, guid: 594970546b92b9842af94076cbf34440, type: 2}

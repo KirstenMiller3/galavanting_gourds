@@ -139,6 +139,13 @@ public class WalkingState : IOogrootState
             OogrootController.Instance.SetState(OogrootController.OogrootState.Planting);
 
         }
+        else
+        {
+            if (AudioManager.instance.sounds.Any(s => s.sName.Contains("chirp")) && !AudioManager.instance.sounds.Any(s => s.source.isPlaying)) {
+                int num = UnityEngine.Random.Range(1, 15);
+                AudioManager.instance.Play($"chirp_{num}");
+                    }
+        }
     }
 }
 
