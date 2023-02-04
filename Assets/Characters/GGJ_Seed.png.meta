@@ -120,12 +120,12 @@ TextureImporter:
       name: GGJ_Seed_0
       rect:
         serializedVersion: 2
-        x: 424
-        y: 1931
-        width: 263
-        height: 474
+        x: 229
+        y: 2118
+        width: 262
+        height: 475
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: GGJ_Seed_1
       rect:
         serializedVersion: 2
-        x: 743
-        y: 1928
+        x: 547
+        y: 2117
         width: 266
         height: 475
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: GGJ_Seed_3
       rect:
         serializedVersion: 2
-        x: 418
-        y: 1448
-        width: 267
-        height: 474
+        x: 223
+        y: 1636
+        width: 266
+        height: 475
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: GGJ_Seed_5
       rect:
         serializedVersion: 2
-        x: 754
-        y: 1456
-        width: 266
-        height: 466
+        x: 558
+        y: 1644
+        width: 265
+        height: 467
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,12 +204,12 @@ TextureImporter:
       name: GGJ_Seed_7
       rect:
         serializedVersion: 2
-        x: 1093
-        y: 1447
-        width: 317
-        height: 466
+        x: 897
+        y: 1635
+        width: 316
+        height: 467
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,12 +225,12 @@ TextureImporter:
       name: GGJ_Seed_8
       rect:
         serializedVersion: 2
-        x: 353
-        y: 966
+        x: 157
+        y: 1153
         width: 282
         height: 448
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -246,12 +246,12 @@ TextureImporter:
       name: GGJ_Seed_9
       rect:
         serializedVersion: 2
-        x: 694
-        y: 963
-        width: 275
+        x: 498
+        y: 1152
+        width: 274
         height: 446
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,12 +267,12 @@ TextureImporter:
       name: GGJ_Seed_10
       rect:
         serializedVersion: 2
-        x: 1027
-        y: 965
+        x: 831
+        y: 1152
         width: 274
-        height: 443
+        height: 444
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,12 +288,12 @@ TextureImporter:
       name: GGJ_Seed_11
       rect:
         serializedVersion: 2
-        x: 1358
-        y: 967
-        width: 272
+        x: 1162
+        y: 1155
+        width: 273
         height: 448
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -309,12 +309,12 @@ TextureImporter:
       name: GGJ_Seed_12
       rect:
         serializedVersion: 2
-        x: 424
-        y: 417
+        x: 228
+        y: 605
         width: 261
         height: 472
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -330,12 +330,12 @@ TextureImporter:
       name: GGJ_Seed_13
       rect:
         serializedVersion: 2
-        x: 720
-        y: 409
-        width: 226
+        x: 524
+        y: 596
+        width: 227
         height: 435
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -351,12 +351,12 @@ TextureImporter:
       name: GGJ_Seed_14
       rect:
         serializedVersion: 2
-        x: 1014
-        y: 409
-        width: 220
-        height: 431
+        x: 818
+        y: 596
+        width: 221
+        height: 432
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -372,12 +372,12 @@ TextureImporter:
       name: GGJ_Seed_15
       rect:
         serializedVersion: 2
-        x: 1273
-        y: 425
-        width: 187
-        height: 376
+        x: 1076
+        y: 613
+        width: 189
+        height: 377
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -385,6 +385,90 @@ TextureImporter:
       bones: []
       spriteID: ef1d16796512e154ca2eaf1eece4dec7
       internalID: 1934904674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GGJ_Seed_16
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 154
+        width: 283
+        height: 441
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 795a27d7dfa93a94cab8002c66ba17fe
+      internalID: 1176542380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GGJ_Seed_17
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 143
+        width: 284
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e9650d2ae8343f40827b3a50ef7babe
+      internalID: -2035330704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GGJ_Seed_18
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 143
+        width: 248
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3051189a4452f094b910d581efc9ab2c
+      internalID: 1289818642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GGJ_Seed_19
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 148
+        width: 273
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caecfca7a90f16146ba200d896390e04
+      internalID: 1325783825
       vertices: []
       indices: 
       edges: []
@@ -401,11 +485,14 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       GGJ_Seed_9: 1235770254
+      GGJ_Seed_19: 1325783825
       GGJ_Seed_8: -2001120311
       GGJ_Seed_0: -1922042187
       GGJ_Seed_11: 958908953
       GGJ_Seed_4: 537354227
+      GGJ_Seed_20: 301025065
       GGJ_Seed_2: 1212579514
+      GGJ_Seed_17: -2035330704
       GGJ_Seed_13: -366787594
       GGJ_Seed_3: 41680611
       GGJ_Seed_6: 1576458929
@@ -413,7 +500,9 @@ TextureImporter:
       GGJ_Seed_15: 1934904674
       GGJ_Seed_14: -1760295251
       GGJ_Seed_1: 1101237621
+      GGJ_Seed_16: 1176542380
       GGJ_Seed_7: 1483011217
+      GGJ_Seed_18: 1289818642
       GGJ_Seed_5: 1021361600
       GGJ_Seed_10: -1226644481
   spritePackingTag: 
