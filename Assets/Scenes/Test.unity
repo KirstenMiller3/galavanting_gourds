@@ -992,7 +992,7 @@ PrefabInstance:
     - target: {fileID: 6914275092200400598, guid: 0552f2a71bc7d9e4f8e8d8f9d9c31a63,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: 0552f2a71bc7d9e4f8e8d8f9d9c31a63,
         type: 3}
@@ -1118,6 +1118,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2294716875906615889}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &686910001 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2294716875234566240, guid: 0eec35adba4fd764e983c8af50a8f8fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2294716875906615889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65271fcc22354aa4d80c1cc7db6e7bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &703152284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1880,7 +1892,7 @@ GameObject:
   - component: {fileID: 1450165008}
   - component: {fileID: 1450165009}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: MOVEABLE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1978,6 +1990,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: test
   _animator: {fileID: 1450165009}
+  _gridSquare: {fileID: 686910001}
+  _startsOccupied: 1
 --- !u!95 &1450165009
 Animator:
   serializedVersion: 5
@@ -3146,7 +3160,7 @@ PrefabInstance:
     - target: {fileID: 4327730339374421148, guid: cffd0a5665da82547ab6df4930bea077,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4327730339374421148, guid: cffd0a5665da82547ab6df4930bea077,
         type: 3}

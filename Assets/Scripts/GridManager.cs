@@ -78,6 +78,13 @@ public partial class GridManager : MonoBehaviour
 
         gridType = _grid[desiredPos.x, desiredPos.y].GridType;
 
+
+        if (_grid[desiredPos.x, desiredPos.y].IsOccupied)
+        {
+            Debug.Log("OCCUPADO!");
+            return false;
+        }
+
         if (_grid[desiredPos.x, desiredPos.y].GridType == GridType.Gap)
         {
             Vector2Int desiredPos2 = new Vector2Int();
@@ -104,11 +111,6 @@ public partial class GridManager : MonoBehaviour
 
         buttonId = _grid[desiredPos.x, desiredPos.y].ButtonId;
 
-        if (_grid[desiredPos.x, desiredPos.y].IsOccupied)
-        {
-            return false;
-        }
-
         _gridPos = desiredPos;
         Debug.Log(_gridPos);
         _grid[_gridPos.x, _gridPos.y].IsOccupied = true;
@@ -134,6 +136,10 @@ public partial class GridManager : MonoBehaviour
         {
             UndoMove( movement);
         }
+    }
+
+    public void SetOccupied(Vector2Int pos, bool occupied) {
+        _grid[pos.x, pos.y].IsOccupied = occupied;
     }
 
     public Vector3 GetPosition()
