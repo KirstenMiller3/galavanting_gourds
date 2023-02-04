@@ -153,14 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!108 &6399062
 Light:
   m_ObjectHideFlags: 0
@@ -4029,7 +4021,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _gridManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1868389719}
     - target: {fileID: 4500504408893913627, guid: 92347d3d20e343844b4190439feb076b,
         type: 3}
       propertyPath: m_RootOrder
