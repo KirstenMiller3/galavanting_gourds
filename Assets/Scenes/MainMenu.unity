@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStartScene: 0
-  loader: {fileID: 0}
+  loader: {fileID: 1305193516}
 --- !u!4 &2130153434
 Transform:
   m_ObjectHideFlags: 0
