@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Milo.Tools;
 
-public class ScreenShake : Singleton<ScreenShake>
+public class ScreenShake : Singleton<ScreenShake>   
 {
     [SerializeField] private bool _debugMode;
 
@@ -22,6 +22,11 @@ public class ScreenShake : Singleton<ScreenShake>
         _timeAtCurrentFrame = Time.realtimeSinceStartup;
         _fakeDelta = _timeAtCurrentFrame - _timeAtLastFrame;
         _timeAtLastFrame = _timeAtCurrentFrame;
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     public void Shake(float duration, float amount)

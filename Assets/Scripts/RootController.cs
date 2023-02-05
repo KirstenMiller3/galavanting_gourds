@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RootController : MonoBehaviour
@@ -19,6 +21,10 @@ public class RootController : MonoBehaviour
     [SerializeField] private ParticleSystem _hitFx;
 
     private Stack<BodySection> _body = new Stack<BodySection>();
+
+    public Stack<BodySection> Route => _body;
+
+    private string rootSoundName;
 
     public void Update()
     {
@@ -58,8 +64,12 @@ public class RootController : MonoBehaviour
 
     private void Move(Vector2Int movement)
     {
-        bool canMove = _gridManager.Move(movement, true, out bool isHazard);
-        if (canMove)
+        int num = UnityEngine.Random.Range(1, 4);
+        AudioManager.instance.Play($"vine_{num}");
+        rootSoundName = $"vine_{num}";
+        Invoke("ShakeOnDelay_Move", 0.7f);
+        bool canMove = _gridManager.Move(movement, out GridType gridType, out string buttonId);
+if (canMove)
         {
             Vector3 newPos = _gridManager.GetPosition();
 
@@ -67,10 +77,37 @@ public class RootController : MonoBehaviour
             transform.position = newPos;
         }
 
-        if(isHazard) {
-            _hitFx.Play();
+        if(gridType == GridType.Hazard) {
+            Invoke("ShakeOnDelay_Hazzard", 0.7f);
             GameController.Instance.SetState(GameController.GameState.Hazard);
         }
+        else if(gridType == GridType.End)
+        {
+            GameController.Instance.SetState(GameController.GameState.Success);
+        }
+
+        if (!string.IsNullOrEmpty(buttonId))
+        {
+            ButtonManager.Instance.ActivateButton(buttonId);
+        }
+    }
+
+    private void ShakeOnDelay_Move()
+    {
+        if(GameController.Instance.State == GameController.GameState.Pikmining 
+            || GameController.Instance.State == GameController.GameState.Success)
+        {
+            return;
+        }
+        ScreenShake.Instance.Shake(0.1f, 0.02f);
+        AudioManager.instance.Stop(rootSoundName);
+
+    }
+
+    private void ShakeOnDelay_Hazzard()
+    {
+        ScreenShake.Instance.Shake(0.2f, 0.4f);
+        _hitFx.Play();
     }
 
     private void SpawnBodySection(Vector2Int movement, Vector3 newPos)
@@ -92,7 +129,13 @@ public class RootController : MonoBehaviour
             return false;
         }
 
+        int num = UnityEngine.Random.Range(1, 10);
+        AudioManager.instance.Play($"vine_retract_{num}");
+        ScreenShake.Instance.Shake(0.1f, 0.01f);
+
         GameObject partToUndo = _body.Peek().body;
+
+
         Destroy(partToUndo);
         Destroy(_body.Peek().root);
 

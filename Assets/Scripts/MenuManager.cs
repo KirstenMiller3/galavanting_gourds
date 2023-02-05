@@ -7,16 +7,17 @@ public class MenuManager : MonoBehaviour
 {
     public int gameStartScene;
 
+    public LevelLoader loader;
+
     public void Nextlevel()
     {
-        if (SceneManager.sceneCount > SceneManager.GetActiveScene().buildIndex)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+        Debug.Log("Start game");
+        loader.LoadNextLevel();
     }
 
     public void QuitGame()
     {
+        Debug.Log("Quit game");
         Application.Quit();
     }
 }

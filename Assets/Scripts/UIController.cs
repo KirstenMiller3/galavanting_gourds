@@ -2,14 +2,36 @@ using Milo.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : Singleton<UIController>
 {
     [SerializeField] private GameObject _hazardWarning;
+    [SerializeField] private Button[] _buttons;
+    [SerializeField] private Button _playButton;
 
     private void Start()
     {
         ShowHazardWarning(false);
+        SetPlayButton(false);
+    }
+
+    private void Update()
+    {
+        SetNoPlayerControls(!GameController.Instance.PauseControls);
+    }
+
+    public void SetNoPlayerControls(bool playerControlsActive)
+    {
+        for(int i = 0; i < _buttons.Length; i++)
+        {
+            _buttons[i].interactable = playerControlsActive;
+        }
+    }
+
+    public void SetPlayButton(bool isActive)
+    {
+        _playButton.interactable = isActive;
     }
 
     public void ShowHazardWarning(bool hazardWarning)

@@ -57,6 +57,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.sName == name);
+
+        if (s != null)
+        {
+            s.source.Stop();
+        }
+        else
+        {
+            Debug.LogError($"Sound {name} was not found.");
+        }
+    }
+
     public AudioMixer masterMixer;
 
     public void SetSefxLevel(float level)
