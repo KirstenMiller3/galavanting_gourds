@@ -39,19 +39,19 @@ public class RootController : MonoBehaviour
 
     private void InputUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             Move(Vector2Int.up);
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             Move(Vector2Int.down);
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             Move(Vector2Int.right);
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.W))
         {
             Move(Vector2Int.left);
         }
@@ -69,7 +69,8 @@ public class RootController : MonoBehaviour
         rootSoundName = $"vine_{num}";
         Invoke("ShakeOnDelay_Move", 0.7f);
         bool canMove = _gridManager.Move(movement, out GridType gridType, out string buttonId);
-if (canMove)
+
+        if (canMove)
         {
             Vector3 newPos = _gridManager.GetPosition();
 
@@ -80,6 +81,10 @@ if (canMove)
         if(gridType == GridType.Hazard) {
             Invoke("ShakeOnDelay_Hazzard", 0.7f);
             GameController.Instance.SetState(GameController.GameState.Hazard);
+        }
+        else if(gridType == GridType.Poison)
+        {
+            GameController.Instance.AddPoisonDamage();
         }
         else if(gridType == GridType.End)
         {
@@ -97,6 +102,7 @@ if (canMove)
         if(GameController.Instance.State == GameController.GameState.Pikmining 
             || GameController.Instance.State == GameController.GameState.Success)
         {
+            AudioManager.instance.Stop(rootSoundName);
             return;
         }
         ScreenShake.Instance.Shake(0.1f, 0.02f);

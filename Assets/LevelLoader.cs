@@ -7,19 +7,20 @@ public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
 
-    public float transitionTime = 1f;
+    public float transitionTime = 10f;
 
     // Update is called once per frame
     void Update()
     {
         // currently loading the new level via transition only when we click
-        if (Input.GetMouseButtonDown(0)){
+        if (Input.GetKeyDown(KeyCode.Return)){
             LoadNextLevel();
         }
     }
 
     public void LoadNextLevel()
     {
+        Debug.Log("Trying to load level:" + (SceneManager.GetActiveScene().buildIndex + 1));
         // check that we don't load beyond the last scene
         if (SceneManager.sceneCount > SceneManager.GetActiveScene().buildIndex){
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
@@ -38,7 +39,4 @@ public class LevelLoader : MonoBehaviour
         // load the new scene
         SceneManager.LoadScene(levelIndex);
     }
-
-
-
 }

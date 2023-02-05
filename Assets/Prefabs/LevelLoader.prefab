@@ -221,6 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8439981844990993153}
   - component: {fileID: 7580970738426188344}
+  - component: {fileID: 2134828088699416098}
   m_Layer: 0
   m_Name: LevelLoader
   m_TagString: Untagged
@@ -256,3 +257,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0705b4e4b47924ab2a2601f6186a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transition: {fileID: 0}
+  transitionTime: 5
+--- !u!95 &2134828088699416098
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439981844990993158}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d8cba5cf00c8d084394b131be045b013, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

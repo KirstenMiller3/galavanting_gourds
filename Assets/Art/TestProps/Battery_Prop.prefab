@@ -107,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 1855340746491473400, guid: 49011e57640af4346b984abcfb1cf581,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1855340746554395458, guid: 49011e57640af4346b984abcfb1cf581,
         type: 3}
@@ -198,6 +198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BasicSpark 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855340746554395461, guid: 49011e57640af4346b984abcfb1cf581,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1855340747401467469, guid: 49011e57640af4346b984abcfb1cf581,
         type: 3}

@@ -7,20 +7,34 @@ public enum GridType
     Gap,
     Button,
     Hazard,
-    End
+    End,
+    Poison,
+    Push
 }
 
 public class GridSquare : MonoBehaviour
 {
+    [SerializeField] private GameObject[] _tileTypes;
+
     public GridType GridType;
     public bool IsOccupied;
 
 
-    public string ButtonId;
+    public string InteractId;
 
 
-    public void Start()
-    {
+    public void Start() {
+        if(_tileTypes.Length > 0)
+        {
+            foreach (var tileType in _tileTypes)
+            {
+                tileType.SetActive(false);
+            }
+
+            _tileTypes[Random.Range(0, _tileTypes.Length)].SetActive(true);
+        }
+
+
         transform.DOPunchScale(Vector3.up, 1f);
     }
 

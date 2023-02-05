@@ -60,7 +60,7 @@ public partial class GridManager : MonoBehaviour
             _grid[row, col].TilePosition = new Vector3(row, 0f, col);
             _grid[row, col].GridType = tiles[i].GridType;
             _grid[row, col].IsOccupied = tiles[i].IsOccupied;
-            _grid[row, col].ButtonId = tiles[i].ButtonId;
+            _grid[row, col].ButtonId = tiles[i].InteractId;
         }
 
         _grid[0, 0].IsOccupied = true;
@@ -87,6 +87,7 @@ public partial class GridManager : MonoBehaviour
 
         if (_grid[desiredPos.x, desiredPos.y].GridType == GridType.Gap)
         {
+            Debug.Log("GAP DETECTED");
             Vector2Int desiredPos2 = new Vector2Int();
             desiredPos2 = desiredPos;
             desiredPos2 += movement;
@@ -99,10 +100,11 @@ public partial class GridManager : MonoBehaviour
 
             if (_grid[desiredPos2.x, desiredPos2.y].IsOccupied || _grid[desiredPos2.x, desiredPos2.y].GridType == GridType.Gap)
             {
+                Debug.Log("GAP DENIED");
                 return false;
             }
 
-
+            Debug.Log("GAP TRAVERSED");
             _gridPos = desiredPos2;
             Debug.Log(_gridPos);
             _grid[_gridPos.x, _gridPos.y].IsOccupied = true;
@@ -127,6 +129,11 @@ public partial class GridManager : MonoBehaviour
             ButtonManager.Instance.ActivateButton(_grid[_gridPos.x, _gridPos.y].ButtonId);
         }
 
+        if (_grid[_gridPos.x, _gridPos.y].GridType == GridType.Poison)
+        {
+            GameController.Instance.RemovePoisonDamage();
+        }
+
         _gridPos -= movement;
 
         _gridPos.x = Mathf.Clamp(_gridPos.x, 0, _rowSize - 1);
@@ -140,6 +147,11 @@ public partial class GridManager : MonoBehaviour
 
     public void SetOccupied(Vector2Int pos, bool occupied) {
         _grid[pos.x, pos.y].IsOccupied = occupied;
+    }
+
+    public void SetGridType(Vector2Int pos, GridType type)
+    {
+        _grid[pos.x, pos.y].GridType = type;
     }
 
     public Vector3 GetPosition()
