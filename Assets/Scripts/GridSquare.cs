@@ -22,12 +22,16 @@ public class GridSquare : MonoBehaviour
 
 
     public void Start() {
-        foreach(var tileType in _tileTypes)
+        if(_tileTypes.Length > 0)
         {
-            tileType.SetActive(false);
+            foreach (var tileType in _tileTypes)
+            {
+                tileType.SetActive(false);
+            }
+
+            _tileTypes[Random.Range(0, _tileTypes.Length)].SetActive(true);
         }
 
-        _tileTypes[Random.Range(0, _tileTypes.Length)].SetActive(true);
 
         transform.DOPunchScale(Vector3.up, 1f);
     }
