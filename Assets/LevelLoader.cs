@@ -23,7 +23,7 @@ public class LevelLoader : Singleton<LevelLoader>
     {
         Debug.Log("Trying to load level:" + (SceneManager.GetActiveScene().buildIndex + 1));
         // check that we don't load beyond the last scene
-        if (SceneManager.sceneCount >= SceneManager.GetActiveScene().buildIndex){
+        if (SceneManager.sceneCountInBuildSettings >= SceneManager.GetActiveScene().buildIndex){
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
         else{
