@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR;
 
 public interface IGameState
 {
@@ -236,13 +235,9 @@ public class SuccessState : IGameState
 
 public class EndState : IGameState
 {
-    public const float _waitTime = 5f;
-
-    private float _timer = 0f;
     public GameController.GameState GameState => GameController.GameState.End;
     public void OnEnter()
     {
-        _timer = 0f;
     }
 
     public void OnExit()
@@ -252,27 +247,15 @@ public class EndState : IGameState
 
     public void OnUpdate()
     {
-        _timer += Time.deltaTime;
 
-        if (_timer > _waitTime)
-        {
-            LevelLoader.Instance.LoadNextLevel();
-        }
     }
 }
 
 public class SeedingState : IGameState
 {
-
-    public const float _waitTime = 5f;
-
-    private float _timer = 0f;
     public GameController.GameState GameState => GameController.GameState.Seeding;
-
-    private bool _done;
     public void OnEnter()
     {
-        _timer = 0f;
     }
 
     public void OnExit()
@@ -282,17 +265,6 @@ public class SeedingState : IGameState
 
     public void OnUpdate()
     {
-        if (_done)
-        {
-            return;
-        }
 
-        _timer += Time.deltaTime;
-
-        if (_timer > _waitTime)
-        {
-            _done = true;
-            LevelLoader.Instance.LoadNextLevel();
-        }
     }
 }

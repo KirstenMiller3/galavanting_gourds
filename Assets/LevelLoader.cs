@@ -1,14 +1,13 @@
-using Milo.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : Singleton<LevelLoader>
+public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
 
-    public float transitionTime = 2f;
+    public float transitionTime = 10f;
 
     // Update is called once per frame
     void Update()
@@ -23,7 +22,7 @@ public class LevelLoader : Singleton<LevelLoader>
     {
         Debug.Log("Trying to load level:" + (SceneManager.GetActiveScene().buildIndex + 1));
         // check that we don't load beyond the last scene
-        if (SceneManager.sceneCount >= SceneManager.GetActiveScene().buildIndex){
+        if (SceneManager.sceneCount > SceneManager.GetActiveScene().buildIndex){
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
         else{
@@ -33,7 +32,6 @@ public class LevelLoader : Singleton<LevelLoader>
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        Debug.Log("LOAD");
         // trigger the transition trigger
         transition.SetTrigger("Start");
         // wait for the transtion time

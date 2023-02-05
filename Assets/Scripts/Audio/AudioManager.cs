@@ -10,10 +10,6 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-    public GameObject PausePanel;
-
-    private bool pausePanelToggle = true;
-
     public static AudioManager instance;
     void Awake()
     {
@@ -44,17 +40,6 @@ public class AudioManager : MonoBehaviour
 
 
         Play("main");
-
-    }
-
-    void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PausePanel.SetActive(pausePanelToggle);
-            pausePanelToggle = !pausePanelToggle;
-        }
 
     }
 
