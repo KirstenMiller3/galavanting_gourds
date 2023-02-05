@@ -148,6 +148,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CFXR Electrified 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9027514048236820045, guid: effb650189dc5714e9e9801b1cfb3991,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
 --- !u!4 &4938541429604618458 stripped

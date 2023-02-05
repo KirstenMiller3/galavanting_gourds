@@ -45,8 +45,8 @@ public class GridSquare : MonoBehaviour
 
     public bool DeElectrify()
     {
-        _isElectrified = !_isElectrified;
-        _particles.SetActive(_isElectrified);
+        _particles.SetActive(false);
+        _isElectrified = false;
         return _isElectrified;
     }
 
