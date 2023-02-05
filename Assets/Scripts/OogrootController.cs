@@ -126,6 +126,7 @@ public class WalkingState : IOogrootState
         foreach (var oogroot in OogrootController.Instance.oogroots)
         {
             oogroot.GetComponent<Oogroot>().SetTargetPositions(_route.ToArray());
+            oogroot.transform.GetComponent<OogrootAnimator>().StartRun();
 
         }
 
@@ -133,7 +134,10 @@ public class WalkingState : IOogrootState
 
     public void OnExit()
     {
-
+        foreach(var oogroot in OogrootController.Instance.oogroots)
+        {
+            oogroot.transform.GetComponent<OogrootAnimator>().EndRun();
+        }
     }
 
     public void OnUpdate()
@@ -203,23 +207,11 @@ public class ReadyState : IOogrootState
     float _timeout = 3f;
     public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Ready;
 
-   // private List<Vector3> StartPos = new List<Vector3>();
     public void OnEnter()
     {
-        //foreach (var oogroot in OogrootController.Instance.oogroots)
-        //{
-        //    StartPos.Add(oogroot.transform.position);
-
-        //}
+       
 
         var origin = new Vector3( GameController.Instance.gridManager.GridOrigin.Position.x, 0f, GameController.Instance.gridManager.GridOrigin.Position.z);
-
-        //for (int i = 0; i < StartPos.Count; i++)
-        //{
-        //    var offset = Random.Range(-0.3f, 0.3f);
-        //    var dest = origin + new Vector3(offset, 0, offset) + (new Vector3(0, .3f,0));
-        //    OogrootController.Instance.oogroots[i].transform.position = Vector3.Lerp(OogrootController.Instance.oogroots[i].transform.position, dest, Time.deltaTime * 2f);
-        //}
 
         for (int i = 0; i < OogrootController.Instance.oogroots.Count; i++)
         {

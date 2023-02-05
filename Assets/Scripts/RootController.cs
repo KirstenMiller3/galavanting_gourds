@@ -101,6 +101,7 @@ if (canMove)
         if(GameController.Instance.State == GameController.GameState.Pikmining 
             || GameController.Instance.State == GameController.GameState.Success)
         {
+            AudioManager.instance.Stop(rootSoundName);
             return;
         }
         ScreenShake.Instance.Shake(0.1f, 0.02f);
