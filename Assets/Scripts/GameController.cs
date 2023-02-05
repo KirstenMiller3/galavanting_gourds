@@ -74,25 +74,26 @@ public class GameController : Singleton<GameController>
             _state.OnUpdate();
         }
 
-        if(_poisonDamageCounter == 0)
-        {
-            _poisonDamageTimer = 0f;
-            return;
-        }
+        //if(_poisonDamageCounter == 0)
+        //{
+        //    _poisonDamageTimer = 0f;
+        //    return;
+        //}
 
-        _poisonDamageTimer += Time.deltaTime;
+        //_poisonDamageTimer += Time.deltaTime;
 
-        if (_poisonDamageTimer >= _poisonDamageInterval)
-        {
-            _poisonDamageTimer = 0f;
-            OnTakePoisonDamage?.Invoke(_poisonDamageCounter);
-        }
+        //if (_poisonDamageTimer >= _poisonDamageInterval)
+        //{
+        //    _poisonDamageTimer = 0f;
+        //    OnTakePoisonDamage?.Invoke(_poisonDamageCounter);
+        //}
     }
 
     public void AddPoisonDamage()
     {
         _poisonDamageCounter++;
         UIController.Instance.UpdatePoisoned(_poisonDamageCounter);
+        OnTakePoisonDamage?.Invoke(_poisonDamageCounter);
     }
 
     public void RemovePoisonDamage()
