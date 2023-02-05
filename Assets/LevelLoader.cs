@@ -1,27 +1,29 @@
+using Milo.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+public class LevelLoader : Singleton<LevelLoader>
 {
     public Animator transition;
 
-    public float transitionTime = 1f;
+    public float transitionTime = 2f;
 
     // Update is called once per frame
     void Update()
     {
         // currently loading the new level via transition only when we click
-        if (Input.GetMouseButtonDown(0)){
+        if (Input.GetKeyDown(KeyCode.Return)){
             LoadNextLevel();
         }
     }
 
     public void LoadNextLevel()
     {
+        Debug.Log("Trying to load level:" + (SceneManager.GetActiveScene().buildIndex + 1));
         // check that we don't load beyond the last scene
-        if (SceneManager.sceneCount > SceneManager.GetActiveScene().buildIndex){
+        if (SceneManager.sceneCount >= SceneManager.GetActiveScene().buildIndex){
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
         else{
@@ -31,6 +33,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
+        Debug.Log("LOAD");
         // trigger the transition trigger
         transition.SetTrigger("Start");
         // wait for the transtion time
@@ -38,7 +41,4 @@ public class LevelLoader : MonoBehaviour
         // load the new scene
         SceneManager.LoadScene(levelIndex);
     }
-
-
-
 }

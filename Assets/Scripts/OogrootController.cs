@@ -1,12 +1,16 @@
 using DG.Tweening;
 using Milo.Tools;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
+using Unity.VisualScripting;
 //using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 using static UnityEngine.UI.Image;
 
@@ -56,22 +60,35 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
     private void Start() { 
     
         for(int i = 0; i < MaxOogroots; i++) { 
-            float xOffset = Random.Range(-0.4f, .4f);
-            float zOffset = Random.Range(-0.4f, .4f);
+            float xOffset = UnityEngine.Random.Range(-0.4f, .4f);
+            float zOffset = UnityEngine.Random.Range(-0.4f, .4f);
             var x = GridManager.GridOrigin.Position.x + xOffset;
             var z = GridManager.GridOrigin.Position.z + zOffset;
-            var position = new Vector3(x, 0f, z); //GridManager.GridOrigin.Position.y
+            var position = new Vector3(x, 0f, z); 
 
             var o = GameObject.Instantiate(Resources.Load("Oogroot"), position, Quaternion.identity) as GameObject;
-
-            if(o == null)
-            {
-                Debug.Log("o returned null");
-            }
             oogroots.Add(o);
         }
         SetState(OogrootState.Idle);
 
+        GameController.Instance.OnTakePoisonDamage += KillOogroot;
+
+
+    }
+
+    public void KillOogroot(int numToDie)
+    {
+        if (numToDie <= oogroots.Count)
+        {
+            AudioManager.instance.Play("die");
+            for (int i = 0; i < numToDie; i++)
+            {
+                oogroots[i].GetComponent<OogrootAnimator>().StartDeath();
+
+            }
+
+            oogroots.RemoveRange(0, numToDie);
+        }
     }
 
     private void Update()
@@ -126,14 +143,19 @@ public class WalkingState : IOogrootState
         foreach (var oogroot in OogrootController.Instance.oogroots)
         {
             oogroot.GetComponent<Oogroot>().SetTargetPositions(_route.ToArray());
+            oogroot.transform.GetComponent<OogrootAnimator>().StartRun();
 
         }
 
     }
 
+
     public void OnExit()
     {
-
+        foreach(var oogroot in OogrootController.Instance.oogroots)
+        {
+            oogroot.transform.GetComponent<OogrootAnimator>().EndRun();
+        }
     }
 
     public void OnUpdate()
@@ -142,7 +164,6 @@ public class WalkingState : IOogrootState
         {
             Debug.Log("planting");
             OogrootController.Instance.SetState(OogrootController.OogrootState.Planting);
-            GameController.Instance.SetState(GameController.GameState.End);
         }
         else
         {
@@ -180,8 +201,41 @@ public class PlantingState : IOogrootState
 {
     public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Planting;
 
+    private List<Vector3> positionsToPlant = new List<Vector3>();
+
+    float _timer;
+
+    float _timeout = 1.5f;
+
     public void OnEnter()
     {
+
+        GameController.Instance.SetState(GameController.GameState.Seeding);
+
+        foreach (var oogroot in OogrootController.Instance.oogroots)
+        {
+            var isOccupied = false;
+            var dest = Vector3.zero;
+
+            while(!isOccupied)
+            {
+                oogroot.transform.GetComponent<OogrootAnimator>().StartJump();
+                var x = UnityEngine.Random.Range(0, GameController.Instance.gridManager._rowSize);
+                var y = UnityEngine.Random.Range(0, GameController.Instance.gridManager._colSize);
+                var tile = GameController.Instance.gridManager.grid[x, y];
+                dest = tile.TilePosition;
+                isOccupied = tile.GridType != GridType.Gap;
+            }
+
+            DG.Tweening.Sequence sequence = DOTween.Sequence();
+            sequence.Append(oogroot.transform.DOJump(dest, 0.2f, 1, 1f))
+                .Insert(0f, oogroot.transform.DOPunchScale(Vector3.up * 0.005f, 1f, 2, 0.2f));
+
+
+            positionsToPlant.Add(dest);
+   
+
+        }
 
     }
 
@@ -192,7 +246,20 @@ public class PlantingState : IOogrootState
 
     public void OnUpdate()
     {
+        _timer += Time.deltaTime;
 
+        if (_timer >= _timeout)
+        {
+            AudioManager.instance.Play("grow");
+            foreach(var pos in positionsToPlant)
+            {
+                var index = UnityEngine.Random.Range(1, 3);
+                GameObject.Instantiate(Resources.Load($"Flowers_0{index}"), pos, Quaternion.identity);
+            }
+
+            OogrootController.Instance.SetState(OogrootController.OogrootState.Idle);
+
+        }
     }
 }
 public class ReadyState : IOogrootState
@@ -203,31 +270,19 @@ public class ReadyState : IOogrootState
     float _timeout = 3f;
     public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Ready;
 
-   // private List<Vector3> StartPos = new List<Vector3>();
     public void OnEnter()
     {
-        //foreach (var oogroot in OogrootController.Instance.oogroots)
-        //{
-        //    StartPos.Add(oogroot.transform.position);
-
-        //}
+       
 
         var origin = new Vector3( GameController.Instance.gridManager.GridOrigin.Position.x, 0f, GameController.Instance.gridManager.GridOrigin.Position.z);
 
-        //for (int i = 0; i < StartPos.Count; i++)
-        //{
-        //    var offset = Random.Range(-0.3f, 0.3f);
-        //    var dest = origin + new Vector3(offset, 0, offset) + (new Vector3(0, .3f,0));
-        //    OogrootController.Instance.oogroots[i].transform.position = Vector3.Lerp(OogrootController.Instance.oogroots[i].transform.position, dest, Time.deltaTime * 2f);
-        //}
-
         for (int i = 0; i < OogrootController.Instance.oogroots.Count; i++)
         {
-            var offset = Random.Range(-0.3f, 0.3f);
+            var offset = UnityEngine.Random.Range(-0.3f, 0.3f);
             var dest = origin + new Vector3(offset, 0, offset) + (new Vector3(0, .1f, 0));
             OogrootController.Instance.oogroots[i].transform.GetComponent<OogrootAnimator>().StartJump();
 
-            Sequence sequence = DOTween.Sequence();
+            DG.Tweening.Sequence sequence = DOTween.Sequence();
             sequence.Append(OogrootController.Instance.oogroots[i].transform.DOJump(dest, 0.2f, 1, 1f))
                 .Insert(0f, OogrootController.Instance.oogroots[i].transform.DOPunchScale(Vector3.up * 0.005f, 1f, 2, 0.2f));
         }

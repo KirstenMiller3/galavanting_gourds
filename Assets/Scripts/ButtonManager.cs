@@ -28,10 +28,25 @@ public class ButtonManager : Singleton<ButtonManager>
         }
     }
 
+    private string _buttonId;
     public void ActivateButton(string buttonId)
     {
-        _buttonEventsDictionary[buttonId].IsActive = !_buttonEventsDictionary[buttonId].IsActive;
-        Debug.Log($"IS ACTIVE? {_buttonEventsDictionary[buttonId].IsActive}");
-        _buttonEventsDictionary[buttonId].ButtonInteractable.OnInteract(_buttonEventsDictionary[buttonId].IsActive);
+        _buttonId = buttonId;
+        _buttonEventsDictionary[_buttonId].IsActive = !_buttonEventsDictionary[_buttonId].IsActive;
+        Debug.Log($"IS ACTIVE? {_buttonEventsDictionary[_buttonId].IsActive}");
+
+        if (_buttonEventsDictionary[_buttonId].IsActive)
+        {
+            Invoke("InvokeActivate", 0.7f);
+        }
+        else
+        {
+            _buttonEventsDictionary[_buttonId].ButtonInteractable.OnInteract(_buttonEventsDictionary[_buttonId].IsActive);
+        }
+    }
+
+    private void InvokeActivate()
+    {
+        _buttonEventsDictionary[_buttonId].ButtonInteractable.OnInteract(_buttonEventsDictionary[_buttonId].IsActive);
     }
 }

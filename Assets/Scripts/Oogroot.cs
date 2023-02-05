@@ -21,12 +21,12 @@ public class Oogroot : MonoBehaviour
         {
             return;
         }
-        Debug.Log("count " + _count + " targetlength " + _targets.Length);
+        //Debug.Log("count " + _count + " targetlength " + _targets.Length);
 
 
         if (_count >= _targets.Length)
         {
-            Debug.Log("setting arrived to true");
+            //Debug.Log("setting arrived to true");
             Arrived = true;
             return;
         }

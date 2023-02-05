@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.XR;
 
 public interface IGameState
 {
@@ -22,7 +23,8 @@ public class GameController : Singleton<GameController>
         Pikmining,
         Death,
         Success,
-        End
+        End,
+        Seeding
     }
 
     [SerializeField] private RootController _rootController;
@@ -56,10 +58,12 @@ public class GameController : Singleton<GameController>
         _states.Add(GameState.Pikmining, new PikminingState());
         _states.Add(GameState.Success, new SuccessState());
         _states.Add(GameState.End, new EndState());
+        _states.Add(GameState.Seeding, new SeedingState());
     }
 
     private void Start()
     {
+        AudioManager.instance.Play("main");
         SetState(GameState.Rooting);
     }
 
@@ -233,9 +237,13 @@ public class SuccessState : IGameState
 
 public class EndState : IGameState
 {
+    public const float _waitTime = 5f;
+
+    private float _timer = 0f;
     public GameController.GameState GameState => GameController.GameState.End;
     public void OnEnter()
     {
+        _timer = 0f;
     }
 
     public void OnExit()
@@ -245,6 +253,47 @@ public class EndState : IGameState
 
     public void OnUpdate()
     {
+        _timer += Time.deltaTime;
 
+        if (_timer > _waitTime)
+        {
+            LevelLoader.Instance.LoadNextLevel();
+        }
+    }
+}
+
+public class SeedingState : IGameState
+{
+
+    public const float _waitTime = 5f;
+
+    private float _timer = 0f;
+    public GameController.GameState GameState => GameController.GameState.Seeding;
+
+    private bool _done;
+    public void OnEnter()
+    {
+        _timer = 0f;
+    }
+
+    public void OnExit()
+    {
+
+    }
+
+    public void OnUpdate()
+    {
+        if (_done)
+        {
+            return;
+        }
+
+        _timer += Time.deltaTime;
+
+        if (_timer > _waitTime)
+        {
+            _done = true;
+            LevelLoader.Instance.LoadNextLevel();
+        }
     }
 }

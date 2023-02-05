@@ -16,10 +16,12 @@ public partial class GridManager : MonoBehaviour
         public Vector3 Position => TilePosition + (Vector3.up * 0.5f);
     }
 
-    [SerializeField] private int _rowSize = 5;
-    [SerializeField] private int _colSize = 5;
+     public int _rowSize = 5;
+     public int _colSize = 5;
 
     private GridSquareData[,] _grid;
+
+    public GridSquareData[,] grid => _grid;
 
     public GridSquareData GridOrigin => _grid[0,0];
 
@@ -30,29 +32,6 @@ public partial class GridManager : MonoBehaviour
 
         _grid = new GridSquareData[_rowSize, _colSize];
 
-        //int count = 0;
-        //for(int rows = 0; rows < _rowSize; rows++)
-        //{
-        //    for(int cols = 0; cols < _colSize; cols++)
-        //    {
-        //        _grid[rows, cols].TilePosition = new Vector3(rows, 0f, cols);
-        //        _grid[rows, cols].GridType = tiles[count].GridType;
-        //        _grid[rows, cols].IsOccupied = tiles[count].IsOccupied;
-        //        _grid[rows, cols].ButtonId = tiles[count].ButtonId;
-
-        //        count++;
-        //    }
-        //}
-
-        //for(int i = 0; i  < _points.Count; i++) {
-        //    int row = (int)(i / _rowSize);
-        //    int col = (int)(i % _rowSize);
-        //    _grid[row, col].TilePosition = new Vector3(row, 0f, col);
-        //    _grid[row, col].GridType = _points[i].GridType;
-        //    _grid[row, col].IsOccupied = _points[i].IsOccupied;
-        //    _grid[row, col].ButtonId = _points[i].ButtonId;
-        //}
-
         for (int i = 0; i < tiles.Length; i++)
         {
             int row = (int)tiles[i].transform.position.x;
@@ -60,7 +39,7 @@ public partial class GridManager : MonoBehaviour
             _grid[row, col].TilePosition = new Vector3(row, 0f, col);
             _grid[row, col].GridType = tiles[i].GridType;
             _grid[row, col].IsOccupied = tiles[i].IsOccupied;
-            _grid[row, col].ButtonId = tiles[i].ButtonId;
+            _grid[row, col].ButtonId = tiles[i].InteractId;
         }
 
         _grid[0, 0].IsOccupied = true;
@@ -74,7 +53,7 @@ public partial class GridManager : MonoBehaviour
         desiredPos += movement;
 
         desiredPos.x = Mathf.Clamp(desiredPos.x, 0, _rowSize - 1);
-        desiredPos.y = Mathf.Clamp(desiredPos.y, 0, _rowSize - 1);
+        desiredPos.y = Mathf.Clamp(desiredPos.y, 0, _colSize - 1);
 
         gridType = _grid[desiredPos.x, desiredPos.y].GridType;
 
@@ -87,6 +66,7 @@ public partial class GridManager : MonoBehaviour
 
         if (_grid[desiredPos.x, desiredPos.y].GridType == GridType.Gap)
         {
+            Debug.Log("GAP DETECTED");
             Vector2Int desiredPos2 = new Vector2Int();
             desiredPos2 = desiredPos;
             desiredPos2 += movement;
@@ -99,10 +79,11 @@ public partial class GridManager : MonoBehaviour
 
             if (_grid[desiredPos2.x, desiredPos2.y].IsOccupied || _grid[desiredPos2.x, desiredPos2.y].GridType == GridType.Gap)
             {
+                Debug.Log("GAP DENIED");
                 return false;
             }
 
-
+            Debug.Log("GAP TRAVERSED");
             _gridPos = desiredPos2;
             Debug.Log(_gridPos);
             _grid[_gridPos.x, _gridPos.y].IsOccupied = true;
@@ -145,6 +126,11 @@ public partial class GridManager : MonoBehaviour
 
     public void SetOccupied(Vector2Int pos, bool occupied) {
         _grid[pos.x, pos.y].IsOccupied = occupied;
+    }
+
+    public void SetGridType(Vector2Int pos, GridType type)
+    {
+        _grid[pos.x, pos.y].GridType = type;
     }
 
     public Vector3 GetPosition()

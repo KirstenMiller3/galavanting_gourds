@@ -8,7 +8,8 @@ public enum GridType
     Button,
     Hazard,
     End,
-    Poison
+    Poison,
+    Push
 }
 
 public class GridSquare : MonoBehaviour
@@ -19,7 +20,7 @@ public class GridSquare : MonoBehaviour
     public bool IsOccupied;
 
 
-    public string ButtonId;
+    public string InteractId;
 
 
     public void Start() {
@@ -38,18 +39,32 @@ public class GridSquare : MonoBehaviour
     }
 
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        if (GridType == GridType.Hazard)
+        switch (GridType)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawCube(transform.position + (Vector3.up * 1f), Vector3.one * 0.2f);
-        }
-
-        if(GridType == GridType.Button)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawCube(transform.position + (Vector3.up * 1f), Vector3.one * 0.2f);
+            case GridType.None:
+                break;
+            case GridType.Gap:
+                Gizmos.color = Color.blue;
+                Gizmos.DrawCube(transform.position, Vector3.one * 0.2f);
+                break;
+            case GridType.Button:
+                Gizmos.color = Color.green;
+                Gizmos.DrawCube(transform.position + (Vector3.up * 1f), Vector3.one * 0.2f);
+                break;
+            case GridType.Hazard:
+                Gizmos.color = Color.red;
+                Gizmos.DrawCube(transform.position + (Vector3.up * 1f), Vector3.one * 0.2f);
+                break;
+            case GridType.End:
+                break;
+            case GridType.Poison:
+                break;
+            case GridType.Push:
+                break;
+            default:
+                break;
         }
     }
 }

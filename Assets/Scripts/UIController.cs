@@ -11,12 +11,14 @@ public class UIController : Singleton<UIController>
     [SerializeField] private GameObject _hazardWarning;
     [SerializeField] private Button[] _buttons;
     [SerializeField] private Button _playButton;
+    [SerializeField] private GameObject _poisonedObj;
     [SerializeField] private TextMeshProUGUI _poisonedText;
 
     private void Start()
     {
-        ShowHazardWarning(false);
+        //ShowHazardWarning(false);
         SetPlayButton(false);
+        UpdatePoisoned(0);
     }
 
     private void Update()
@@ -39,25 +41,21 @@ public class UIController : Singleton<UIController>
 
     public void ShowHazardWarning(bool hazardWarning)
     {
-        _hazardWarning.SetActive(hazardWarning);
+       // _hazardWarning.SetActive(hazardWarning);
     }
 
     public void UpdatePoisoned(int amount)
     {
-        _poisonedText.gameObject.SetActive(amount > 0);
-        if(amount == 0)
+        _poisonedObj.gameObject.SetActive(amount > 0);
+        if (amount == 0)
         {
             return;
         }
 
-        _poisonedText.color = Color.white;
-        _poisonedText.rectTransform.DORestart();
+        _poisonedObj.transform.DORestart();
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(_poisonedText.rectTransform.DOShakeScale(0.5f, 0.5f, 10)).Insert(0f, _poisonedText.DOColor(Color.green, 1f));
-
-
-        //_poisonedText.rectTransform.DOShakeScale(0.5f, 0.5f, 10);
+        sequence.Append(_poisonedObj.transform.DOShakeScale(0.5f, 0.5f, 10));
 
         _poisonedText.text = $"Poisoned: {amount}";
     }
