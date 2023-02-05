@@ -15,16 +15,21 @@ public enum GridType
 public class GridSquare : MonoBehaviour
 {
     [SerializeField] private GameObject[] _tileTypes;
+    [SerializeField] private GameObject _particles;
 
     public GridType GridType;
     public bool IsOccupied;
+    public bool IsElectrified;
 
 
     public string InteractId;
 
+    private bool _isElectrified;
 
     public void Start() {
-        if(_tileTypes.Length > 0)
+
+        _isElectrified = IsElectrified;
+        if (_tileTypes.Length > 0)
         {
             foreach (var tileType in _tileTypes)
             {
@@ -36,6 +41,13 @@ public class GridSquare : MonoBehaviour
 
 
         transform.DOPunchScale(Vector3.up, 1f);
+    }
+
+    public bool DeElectrify()
+    {
+        _isElectrified = !_isElectrified;
+        _particles.SetActive(_isElectrified);
+        return _isElectrified;
     }
 
 
