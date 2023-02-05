@@ -163,7 +163,6 @@ public class WalkingState : IOogrootState
         {
             Debug.Log("planting");
             OogrootController.Instance.SetState(OogrootController.OogrootState.Planting);
-            GameController.Instance.SetState(GameController.GameState.End);
         }
         else
         {
