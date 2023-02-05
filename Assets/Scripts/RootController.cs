@@ -39,19 +39,19 @@ public class RootController : MonoBehaviour
 
     private void InputUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             Move(Vector2Int.up);
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             Move(Vector2Int.down);
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             Move(Vector2Int.right);
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             Move(Vector2Int.left);
         }

@@ -22,7 +22,8 @@ public class GameController : Singleton<GameController>
         Pikmining,
         Death,
         Success,
-        End
+        End,
+        Seeding
     }
 
     [SerializeField] private RootController _rootController;
@@ -56,6 +57,7 @@ public class GameController : Singleton<GameController>
         _states.Add(GameState.Pikmining, new PikminingState());
         _states.Add(GameState.Success, new SuccessState());
         _states.Add(GameState.End, new EndState());
+        _states.Add(GameState.Seeding, new SeedingState());
     }
 
     private void Start()
@@ -234,6 +236,24 @@ public class SuccessState : IGameState
 public class EndState : IGameState
 {
     public GameController.GameState GameState => GameController.GameState.End;
+    public void OnEnter()
+    {
+    }
+
+    public void OnExit()
+    {
+
+    }
+
+    public void OnUpdate()
+    {
+
+    }
+}
+
+public class SeedingState : IGameState
+{
+    public GameController.GameState GameState => GameController.GameState.Seeding;
     public void OnEnter()
     {
     }

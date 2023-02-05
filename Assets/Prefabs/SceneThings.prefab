@@ -959,11 +959,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4166746325736411501, guid: 7ec6b6ad2c4290841bdfa62a4e439e83,
         type: 3}
-      propertyPath: _buttonEvents.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166746325736411501, guid: 7ec6b6ad2c4290841bdfa62a4e439e83,
-        type: 3}
       propertyPath: _buttonEvents.Array.data[0].ButtonId
       value: test
       objectReference: {fileID: 0}
