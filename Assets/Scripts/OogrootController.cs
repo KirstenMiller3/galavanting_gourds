@@ -210,6 +210,8 @@ public class PlantingState : IOogrootState
     public void OnEnter()
     {
 
+        GameController.Instance.SetState(GameController.GameState.Seeding);
+
         foreach (var oogroot in OogrootController.Instance.oogroots)
         {
             var isOccupied = false;
