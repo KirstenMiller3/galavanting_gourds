@@ -18,6 +18,7 @@ public class CameraController : Singleton<CameraController> {
     {
         _activeCam = _gameCamera;
         _baseFOV = _oogrootCamera.fieldOfView;
+        _oogrootCamera.gameObject.SetActive(false);
     }
 
     private void Update()
