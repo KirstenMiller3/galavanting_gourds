@@ -6000,6 +6000,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -7274,6 +7279,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
       objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
@@ -9966,6 +9976,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -11156,8 +11171,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4327730339374421152, guid: cffd0a5665da82547ab6df4930bea077,
         type: 3}
+      propertyPath: GridType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327730339374421152, guid: cffd0a5665da82547ab6df4930bea077,
+        type: 3}
       propertyPath: InteractId
       value: CassetteButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196574260093501452, guid: cffd0a5665da82547ab6df4930bea077,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cffd0a5665da82547ab6df4930bea077, type: 3}
@@ -12112,6 +12137,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -12496,6 +12526,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1287875510}
     m_Modifications:
+    - target: {fileID: 4938541429604618461, guid: 298764754689c334faa26e28b927d4e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7370346213595111024, guid: 298764754689c334faa26e28b927d4e9,
         type: 3}
       propertyPath: m_RootOrder
@@ -12644,6 +12679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
       objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
@@ -16658,6 +16698,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -18600,6 +18645,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -18900,6 +18950,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -19049,6 +19104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GridSquare_Water_Electrical (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
       objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
@@ -20662,6 +20722,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridSquare_Water_Electrical
       objectReference: {fileID: 0}
+    - target: {fileID: 6914275092200400594, guid: f98f3340623513e4f922a287e1bcc8ff,
+        type: 3}
+      propertyPath: InteractId
+      value: ElectricitySwitch
+      objectReference: {fileID: 0}
     - target: {fileID: 6914275092200400598, guid: f98f3340623513e4f922a287e1bcc8ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -21083,17 +21148,17 @@ PrefabInstance:
     - target: {fileID: 4713330120542117422, guid: 9e0c871de6f1fff46a6f3c0945fe5649,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -685.36
+      value: -681.09
       objectReference: {fileID: 0}
     - target: {fileID: 4713330120542117422, guid: 9e0c871de6f1fff46a6f3c0945fe5649,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -129.59
+      value: -125.4
       objectReference: {fileID: 0}
     - target: {fileID: 4713330120542117422, guid: 9e0c871de6f1fff46a6f3c0945fe5649,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.46
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4713330120542117422, guid: 9e0c871de6f1fff46a6f3c0945fe5649,
         type: 3}
