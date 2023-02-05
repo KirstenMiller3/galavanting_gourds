@@ -1547,5 +1547,21 @@ MonoBehaviour:
     mixerGroup: {fileID: 4609161467335981969, guid: 594970546b92b9842af94076cbf34440,
       type: 2}
     source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 4e829df30cba6ec428ad5ab65f141d82, type: 3}
+    sName: die
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 028b4a9fad8735d4481eca8cb971a75f, type: 3}
+    sName: grow
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
   PausePanel: {fileID: 407672545}
   masterMixer: {fileID: 24100000, guid: 594970546b92b9842af94076cbf34440, type: 2}

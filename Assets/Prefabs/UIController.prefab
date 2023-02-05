@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 888118109581192924}
   - component: {fileID: 888118109581192925}
   - component: {fileID: 1540864782}
+  - component: {fileID: 841354335126589325}
   m_Layer: 5
   m_Name: Button_Play
   m_TagString: Untagged
@@ -147,6 +148,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5eb3af86d634f443a2444a24183e11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &841354335126589325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888118109581192923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2793c7bd79b067f41806a0e5ca36a614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: button_ok
 --- !u!1 &888118110519885156
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +250,7 @@ GameObject:
   - component: {fileID: 888118110603773884}
   - component: {fileID: 888118110603773885}
   - component: {fileID: 2127633000}
+  - component: {fileID: 8890044023830217897}
   m_Layer: 5
   m_Name: Button_Undo
   m_TagString: Untagged
@@ -370,6 +385,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5eb3af86d634f443a2444a24183e11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8890044023830217897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888118110603773883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2793c7bd79b067f41806a0e5ca36a614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: button_cancel
 --- !u!1 &888118110907131377
 GameObject:
   m_ObjectHideFlags: 0

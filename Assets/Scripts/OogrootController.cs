@@ -80,6 +80,7 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
     {
         if (numToDie <= oogroots.Count)
         {
+            AudioManager.instance.Play("die");
             for (int i = 0; i < numToDie; i++)
             {
                 oogroots[i].GetComponent<OogrootAnimator>().StartDeath();
@@ -249,6 +250,7 @@ public class PlantingState : IOogrootState
 
         if (_timer >= _timeout)
         {
+            AudioManager.instance.Play("grow");
             foreach(var pos in positionsToPlant)
             {
                 var index = UnityEngine.Random.Range(1, 3);
