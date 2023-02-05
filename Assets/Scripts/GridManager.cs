@@ -53,7 +53,7 @@ public partial class GridManager : MonoBehaviour
         desiredPos += movement;
 
         desiredPos.x = Mathf.Clamp(desiredPos.x, 0, _rowSize - 1);
-        desiredPos.y = Mathf.Clamp(desiredPos.y, 0, _rowSize - 1);
+        desiredPos.y = Mathf.Clamp(desiredPos.y, 0, _colSize - 1);
 
         gridType = _grid[desiredPos.x, desiredPos.y].GridType;
 

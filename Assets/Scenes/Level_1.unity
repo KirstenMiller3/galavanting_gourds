@@ -1719,8 +1719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6389f90375e496d40aa18de8597526a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rowSize: 4
-  _colSize: 5
+  _rowSize: 5
+  _colSize: 4
 --- !u!4 &1868389720
 Transform:
   m_ObjectHideFlags: 0
@@ -1982,11 +1982,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4855551013070522000, guid: 9e0c871de6f1fff46a6f3c0945fe5649,
-        type: 3}
-      propertyPath: _buttonEvents.Array.data[0].ButtonInteractable
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8858683999767602531, guid: 9e0c871de6f1fff46a6f3c0945fe5649,
         type: 3}
       propertyPath: _gridManager
