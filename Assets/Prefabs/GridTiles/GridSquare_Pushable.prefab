@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65271fcc22354aa4d80c1cc7db6e7bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GridType: 0
+  _tileTypes: []
+  GridType: 6
   IsOccupied: 0
-  ButtonId: 
+  InteractId: 

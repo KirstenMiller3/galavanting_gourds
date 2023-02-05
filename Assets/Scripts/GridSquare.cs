@@ -8,7 +8,8 @@ public enum GridType
     Button,
     Hazard,
     End,
-    Poison
+    Poison,
+    Push
 }
 
 public class GridSquare : MonoBehaviour
@@ -19,7 +20,7 @@ public class GridSquare : MonoBehaviour
     public bool IsOccupied;
 
 
-    public string ButtonId;
+    public string InteractId;
 
 
     public void Start() {
