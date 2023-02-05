@@ -122,6 +122,7 @@ public class GameController : Singleton<GameController>
 
     public void OnClickStart()
     {
+        UIController.Instance.SetPlayButton(false);
         SetState(GameState.Pikmining);
     }
 }
