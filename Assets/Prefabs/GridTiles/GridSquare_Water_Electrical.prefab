@@ -113,9 +113,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileTypes: []
-  GridType: 0
+  _particles: {fileID: 1924372106837661873}
+  GridType: 3
   IsOccupied: 0
-  ButtonId: 
+  IsElectrified: 1
+  InteractId: 
 --- !u!1001 &1058470751296381005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -201,7 +203,7 @@ PrefabInstance:
     - target: {fileID: 309908454665629572, guid: effb650189dc5714e9e9801b1cfb3991,
         type: 3}
       propertyPath: m_Intensity
-      value: 1.7532537
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 496487244642044110, guid: effb650189dc5714e9e9801b1cfb3991,
         type: 3}
@@ -280,6 +282,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
+--- !u!1 &1924372106837661873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9027514048236820045, guid: effb650189dc5714e9e9801b1cfb3991,
+    type: 3}
+  m_PrefabInstance: {fileID: 7493024469699235580}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1924372106837661878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9027514048236820042, guid: effb650189dc5714e9e9801b1cfb3991,

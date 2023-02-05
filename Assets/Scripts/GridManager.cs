@@ -11,7 +11,6 @@ public partial class GridManager : MonoBehaviour
         public Vector3 TilePosition;
         public GridType GridType;
         public bool IsOccupied;
-        public bool IsButton => !string.IsNullOrEmpty(ButtonId);
         public string ButtonId;
         public Vector3 Position => TilePosition + (Vector3.up * 0.5f);
     }
@@ -22,10 +21,13 @@ public partial class GridManager : MonoBehaviour
     private GridSquareData[,] _grid;
 
     public GridSquareData[,] grid => _grid;
+    public List<GridSquare> ElectrifiedGrids => _electrified;
 
     public GridSquareData GridOrigin => _grid[0,0];
 
     private Vector2Int _gridPos = new Vector2Int();
+
+    private List<GridSquare> _electrified = new List<GridSquare>();
 
     private void Awake()  {
         GridSquare[] tiles = GetComponentsInChildren<GridSquare>();
@@ -34,6 +36,10 @@ public partial class GridManager : MonoBehaviour
 
         for (int i = 0; i < tiles.Length; i++)
         {
+            if (tiles[i].IsElectrified) {
+                _electrified.Add(tiles[i]);
+            }
+
             int row = (int)tiles[i].transform.position.x;
             int col = (int)tiles[i].transform.position.z;
             _grid[row, col].TilePosition = new Vector3(row, 0f, col);
@@ -103,7 +109,7 @@ public partial class GridManager : MonoBehaviour
         _grid[_gridPos.x, _gridPos.y].IsOccupied = false;
 
 
-        if (_grid[_gridPos.x, _gridPos.y].IsButton)
+        if (_grid[_gridPos.x, _gridPos.y].GridType == GridType.Button)
         {
             ButtonManager.Instance.ActivateButton(_grid[_gridPos.x, _gridPos.y].ButtonId);
         }
@@ -118,7 +124,8 @@ public partial class GridManager : MonoBehaviour
         _gridPos.x = Mathf.Clamp(_gridPos.x, 0, _rowSize - 1);
         _gridPos.y = Mathf.Clamp(_gridPos.y, 0, _rowSize - 1);
 
-        if(_grid[_gridPos.x, _gridPos.y].GridType == GridType.Gap)
+
+        if (_grid[_gridPos.x, _gridPos.y].GridType == GridType.Gap)
         {
             UndoMove( movement);
         }

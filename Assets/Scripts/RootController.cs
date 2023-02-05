@@ -91,7 +91,7 @@ public class RootController : MonoBehaviour
             GameController.Instance.SetState(GameController.GameState.Success);
         }
 
-        if (!string.IsNullOrEmpty(buttonId))
+        if (gridType == GridType.Button)
         {
             ButtonManager.Instance.ActivateButton(buttonId);
         }
