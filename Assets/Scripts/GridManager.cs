@@ -127,6 +127,11 @@ public partial class GridManager : MonoBehaviour
             ButtonManager.Instance.ActivateButton(_grid[_gridPos.x, _gridPos.y].ButtonId);
         }
 
+        if (_grid[_gridPos.x, _gridPos.y].GridType == GridType.Poison)
+        {
+            GameController.Instance.RemovePoisonDamage();
+        }
+
         _gridPos -= movement;
 
         _gridPos.x = Mathf.Clamp(_gridPos.x, 0, _rowSize - 1);

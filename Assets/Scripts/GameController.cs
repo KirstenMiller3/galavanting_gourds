@@ -26,6 +26,7 @@ public class GameController : Singleton<GameController>
     }
 
     [SerializeField] private RootController _rootController;
+    [SerializeField] private float _poisonDamageInterval = 1f;
 
     public GridManager gridManager;
 
@@ -39,6 +40,12 @@ public class GameController : Singleton<GameController>
     public UnityEvent<GameState> OnStateChanged;
 
     private Dictionary<GameState, IGameState> _states = new Dictionary<GameState, IGameState>();
+
+    public System.Action<int> OnTakePoisonDamage;
+
+    private int _poisonDamageCounter = 0;
+
+    private float _poisonDamageTimer = 0f;
 
 
     protected override void Awake()
@@ -62,6 +69,32 @@ public class GameController : Singleton<GameController>
         {
             _state.OnUpdate();
         }
+
+        if(_poisonDamageCounter == 0)
+        {
+            _poisonDamageTimer = 0f;
+            return;
+        }
+
+        _poisonDamageTimer += Time.deltaTime;
+
+        if (_poisonDamageTimer >= _poisonDamageInterval)
+        {
+            _poisonDamageTimer = 0f;
+            OnTakePoisonDamage?.Invoke(_poisonDamageCounter);
+        }
+    }
+
+    public void AddPoisonDamage()
+    {
+        _poisonDamageCounter++;
+        UIController.Instance.UpdatePoisoned(_poisonDamageCounter);
+    }
+
+    public void RemovePoisonDamage()
+    {
+        _poisonDamageCounter--;
+        UIController.Instance.UpdatePoisoned(_poisonDamageCounter);
     }
 
     public void SetState(GameState state)

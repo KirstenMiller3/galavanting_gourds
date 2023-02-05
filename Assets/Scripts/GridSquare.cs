@@ -7,7 +7,8 @@ public enum GridType
     Gap,
     Button,
     Hazard,
-    End
+    End,
+    Poison
 }
 
 public class GridSquare : MonoBehaviour

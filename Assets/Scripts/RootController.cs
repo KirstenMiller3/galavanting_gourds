@@ -81,6 +81,10 @@ if (canMove)
             Invoke("ShakeOnDelay_Hazzard", 0.7f);
             GameController.Instance.SetState(GameController.GameState.Hazard);
         }
+        else if(gridType == GridType.Poison)
+        {
+            GameController.Instance.AddPoisonDamage();
+        }
         else if(gridType == GridType.End)
         {
             GameController.Instance.SetState(GameController.GameState.Success);
