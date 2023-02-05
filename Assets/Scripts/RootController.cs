@@ -69,7 +69,8 @@ public class RootController : MonoBehaviour
         rootSoundName = $"vine_{num}";
         Invoke("ShakeOnDelay_Move", 0.7f);
         bool canMove = _gridManager.Move(movement, out GridType gridType, out string buttonId);
-if (canMove)
+
+        if (canMove)
         {
             Vector3 newPos = _gridManager.GetPosition();
 
