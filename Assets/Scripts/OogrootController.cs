@@ -233,7 +233,7 @@ public class PlantingState : IOogrootState
 
 
             positionsToPlant.Add(dest);
-       
+   
 
         }
 
@@ -255,7 +255,9 @@ public class PlantingState : IOogrootState
                 var index = UnityEngine.Random.Range(1, 3);
                 GameObject.Instantiate(Resources.Load($"Flowers_0{index}"), pos, Quaternion.identity);
             }
-   
+
+            OogrootController.Instance.SetState(OogrootController.OogrootState.Idle);
+
         }
     }
 }
