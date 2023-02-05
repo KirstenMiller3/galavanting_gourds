@@ -610,8 +610,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: HAZARD
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10b1e52e82efe044da26098829e7e808, type: 2}
+  m_sharedMaterial: {fileID: -1260489483842722837, guid: 10b1e52e82efe044da26098829e7e808,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -745,8 +746,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'POISONED: {0}'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10b1e52e82efe044da26098829e7e808, type: 2}
+  m_sharedMaterial: {fileID: -1260489483842722837, guid: 10b1e52e82efe044da26098829e7e808,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

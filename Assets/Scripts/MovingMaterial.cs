@@ -9,7 +9,9 @@ public class MovingMaterial : MonoBehaviour
 
     private void Start()
     {
+        _material.mainTextureOffset = Vector2.zero;
+
         Sequence sequence = DOTween.Sequence();
-        sequence.SetLoops(-1).Append(_material.DOOffset(Vector2.up * 10f, 50f));
+        sequence.SetLoops(-1).Append(_material.DOOffset(Vector2.up * 10f, 50f).SetEase(Ease.Linear));
     }
 }

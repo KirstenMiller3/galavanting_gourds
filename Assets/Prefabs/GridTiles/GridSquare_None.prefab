@@ -831,6 +831,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RuinedGround_Block_05
       objectReference: {fileID: 0}
+    - target: {fileID: 8589628078842334831, guid: 3056fe89bffea2541a51b351daab6e36,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8971079845768205525, guid: 3056fe89bffea2541a51b351daab6e36,
         type: 3}
       propertyPath: m_RootOrder
