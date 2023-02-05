@@ -40,11 +40,6 @@ public class AudioManager : MonoBehaviour
 
         }
 
-
-
-
-        Play("main");
-
     }
 
     void Update()

@@ -1523,5 +1523,29 @@ MonoBehaviour:
     mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
       type: 2}
     source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: c77e1f0352d6a1e4cb13c445408cbbc6, type: 3}
+    sName: button_ok
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 56af0318e50288548a827222032e8d15, type: 3}
+    sName: button_cancel
+    loop: 0
+    mixerGroup: {fileID: 407932118885073094, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
+  - volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: fbd29067bf1f0194fa979ce07b53c077, type: 3}
+    sName: title
+    loop: 1
+    mixerGroup: {fileID: 4609161467335981969, guid: 594970546b92b9842af94076cbf34440,
+      type: 2}
+    source: {fileID: 0}
   PausePanel: {fileID: 407672545}
   masterMixer: {fileID: 24100000, guid: 594970546b92b9842af94076cbf34440, type: 2}

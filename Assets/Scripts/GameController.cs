@@ -62,6 +62,7 @@ public class GameController : Singleton<GameController>
 
     private void Start()
     {
+        AudioManager.instance.Play("main");
         SetState(GameState.Rooting);
     }
 

@@ -9,10 +9,18 @@ public class MenuManager : MonoBehaviour
 
     public LevelLoader loader;
 
+
+    public void Start()
+    {
+        AudioManager.instance.Play("title");
+    }
+
     public void Nextlevel()
     {
         Debug.Log("Start game");
         loader.LoadNextLevel();
+        AudioManager.instance.Stop("title");
+
     }
 
     public void QuitGame()
