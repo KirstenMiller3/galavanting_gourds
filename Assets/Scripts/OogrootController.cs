@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 //using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -66,15 +67,27 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
             var position = new Vector3(x, 0f, z); 
 
             var o = GameObject.Instantiate(Resources.Load("Oogroot"), position, Quaternion.identity) as GameObject;
-
-            if(o == null)
-            {
-                Debug.Log("o returned null");
-            }
             oogroots.Add(o);
         }
         SetState(OogrootState.Idle);
 
+        GameController.Instance.OnTakePoisonDamage += KillOogroot;
+
+
+    }
+
+    public void KillOogroot(int numToDie)
+    {
+        if (numToDie <= oogroots.Count)
+        {
+            for (int i = 0; i < numToDie; i++)
+            {
+                oogroots[i].GetComponent<OogrootAnimator>().StartDeath();
+
+            }
+
+            oogroots.RemoveRange(0, numToDie);
+        }
     }
 
     private void Update()
@@ -134,6 +147,7 @@ public class WalkingState : IOogrootState
         }
 
     }
+
 
     public void OnExit()
     {
@@ -211,7 +225,7 @@ public class PlantingState : IOogrootState
                 isOccupied = tile.GridType != GridType.Gap;
             }
 
-            Sequence sequence = DOTween.Sequence();
+            DG.Tweening.Sequence sequence = DOTween.Sequence();
             sequence.Append(oogroot.transform.DOJump(dest, 0.2f, 1, 1f))
                 .Insert(0f, oogroot.transform.DOPunchScale(Vector3.up * 0.005f, 1f, 2, 0.2f));
 
@@ -263,7 +277,7 @@ public class ReadyState : IOogrootState
             var dest = origin + new Vector3(offset, 0, offset) + (new Vector3(0, .1f, 0));
             OogrootController.Instance.oogroots[i].transform.GetComponent<OogrootAnimator>().StartJump();
 
-            Sequence sequence = DOTween.Sequence();
+            DG.Tweening.Sequence sequence = DOTween.Sequence();
             sequence.Append(OogrootController.Instance.oogroots[i].transform.DOJump(dest, 0.2f, 1, 1f))
                 .Insert(0f, OogrootController.Instance.oogroots[i].transform.DOPunchScale(Vector3.up * 0.005f, 1f, 2, 0.2f));
         }
