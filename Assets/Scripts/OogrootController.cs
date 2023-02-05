@@ -1,12 +1,15 @@
 using DG.Tweening;
 using Milo.Tools;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 //using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 using static UnityEngine.UI.Image;
 
@@ -56,11 +59,11 @@ public class OogrootController : Milo.Tools.Singleton<OogrootController>
     private void Start() { 
     
         for(int i = 0; i < MaxOogroots; i++) { 
-            float xOffset = Random.Range(-0.4f, .4f);
-            float zOffset = Random.Range(-0.4f, .4f);
+            float xOffset = UnityEngine.Random.Range(-0.4f, .4f);
+            float zOffset = UnityEngine.Random.Range(-0.4f, .4f);
             var x = GridManager.GridOrigin.Position.x + xOffset;
             var z = GridManager.GridOrigin.Position.z + zOffset;
-            var position = new Vector3(x, 0f, z); //GridManager.GridOrigin.Position.y
+            var position = new Vector3(x, 0f, z); 
 
             var o = GameObject.Instantiate(Resources.Load("Oogroot"), position, Quaternion.identity) as GameObject;
 
@@ -184,8 +187,39 @@ public class PlantingState : IOogrootState
 {
     public OogrootController.OogrootState OogrootState => OogrootController.OogrootState.Planting;
 
+    private List<Vector3> positionsToPlant = new List<Vector3>();
+
+    float _timer;
+
+    float _timeout = 1.5f;
+
     public void OnEnter()
     {
+
+        foreach (var oogroot in OogrootController.Instance.oogroots)
+        {
+            var isOccupied = false;
+            var dest = Vector3.zero;
+
+            while(!isOccupied)
+            {
+                oogroot.transform.GetComponent<OogrootAnimator>().StartJump();
+                var x = UnityEngine.Random.Range(0, GameController.Instance.gridManager._rowSize);
+                var y = UnityEngine.Random.Range(0, GameController.Instance.gridManager._colSize);
+                var tile = GameController.Instance.gridManager.grid[x, y];
+                dest = tile.TilePosition;
+                isOccupied = tile.GridType != GridType.Gap;
+            }
+
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(oogroot.transform.DOJump(dest, 0.2f, 1, 1f))
+                .Insert(0f, oogroot.transform.DOPunchScale(Vector3.up * 0.005f, 1f, 2, 0.2f));
+
+
+            positionsToPlant.Add(dest);
+       
+
+        }
 
     }
 
@@ -196,7 +230,17 @@ public class PlantingState : IOogrootState
 
     public void OnUpdate()
     {
+        _timer += Time.deltaTime;
 
+        if (_timer >= _timeout)
+        {
+            foreach(var pos in positionsToPlant)
+            {
+                var index = UnityEngine.Random.Range(1, 3);
+                GameObject.Instantiate(Resources.Load($"Flowers_0{index}"), pos, Quaternion.identity);
+            }
+   
+        }
     }
 }
 public class ReadyState : IOogrootState
@@ -215,7 +259,7 @@ public class ReadyState : IOogrootState
 
         for (int i = 0; i < OogrootController.Instance.oogroots.Count; i++)
         {
-            var offset = Random.Range(-0.3f, 0.3f);
+            var offset = UnityEngine.Random.Range(-0.3f, 0.3f);
             var dest = origin + new Vector3(offset, 0, offset) + (new Vector3(0, .1f, 0));
             OogrootController.Instance.oogroots[i].transform.GetComponent<OogrootAnimator>().StartJump();
 
