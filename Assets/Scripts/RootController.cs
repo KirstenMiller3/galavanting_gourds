@@ -81,6 +81,10 @@ if (canMove)
             Invoke("ShakeOnDelay_Hazzard", 0.7f);
             GameController.Instance.SetState(GameController.GameState.Hazard);
         }
+        else if(gridType == GridType.Poison)
+        {
+            GameController.Instance.AddPoisonDamage();
+        }
         else if(gridType == GridType.End)
         {
             GameController.Instance.SetState(GameController.GameState.Success);
@@ -97,6 +101,7 @@ if (canMove)
         if(GameController.Instance.State == GameController.GameState.Pikmining 
             || GameController.Instance.State == GameController.GameState.Success)
         {
+            AudioManager.instance.Stop(rootSoundName);
             return;
         }
         ScreenShake.Instance.Shake(0.1f, 0.02f);
