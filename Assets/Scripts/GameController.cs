@@ -253,9 +253,14 @@ public class EndState : IGameState
 
 public class SeedingState : IGameState
 {
+
+    public const float _waitTime = 5f;
+
+    private float _timer = 0f;
     public GameController.GameState GameState => GameController.GameState.Seeding;
     public void OnEnter()
     {
+        _timer = 0f;
     }
 
     public void OnExit()
@@ -265,6 +270,10 @@ public class SeedingState : IGameState
 
     public void OnUpdate()
     {
-
+        _timer += Time.deltaTime;
+        if(_timer > _waitTime )
+        {
+            LevelLoader.Instance.LoadNextLevel();
+        }
     }
 }

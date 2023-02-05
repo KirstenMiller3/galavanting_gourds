@@ -1,13 +1,14 @@
+using Milo.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+public class LevelLoader : Singleton<LevelLoader>
 {
     public Animator transition;
 
-    public float transitionTime = 10f;
+    public float transitionTime = 2f;
 
     // Update is called once per frame
     void Update()
@@ -32,6 +33,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex)
     {
+        Debug.Log("LOAD");
         // trigger the transition trigger
         transition.SetTrigger("Start");
         // wait for the transtion time
